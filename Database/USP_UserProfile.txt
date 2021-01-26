@@ -1,6 +1,6 @@
 USE [CVMANAGEMENT]
 GO
-/****** Object:  StoredProcedure [dbo].[Usp_UserProfile]    Script Date: 26-Jan-21 11:22:13 AM ******/
+/****** Object:  StoredProcedure [dbo].[Usp_UserProfile]    Script Date: 26-Jan-21 1:33:47 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -58,26 +58,19 @@ BEGIN
   END
   IF (@Query = 3)
   BEGIN
-    DELETE FROM UserProfile
-    WHERE UserProfile.id = @id
-    SELECT
-      'Deleted'
-  END
-  IF (@Query = 4)
-  BEGIN
     SELECT
       *
     FROM UserProfile
   END
 END
-  IF (@Query = 5)
+  IF (@Query = 4)
   BEGIN
     SELECT
       *
     FROM UserProfile
     WHERE UserProfile.id = @id
   END
-  IF (@Query = 6)
+  IF (@Query = 5)
   BEGIN
     SELECT
       *
