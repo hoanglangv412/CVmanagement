@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2 style="margin-top:5%;margin-bottom:2%">All Email Templates</h2>
+<h2>All Email Templates</h2>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -34,5 +34,5 @@
 </table>
 
 <p>
-    @Html.ActionLink("Create New", "createEditTemplate", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create", "createEditTemplate",null, new { @class = "btn btn-primary" })
 </p>

@@ -19,7 +19,7 @@ namespace cvManagement.Controllers
         public ActionResult ShowAllTemplates()
         {
             emailTemplate objTemplate = new emailTemplate();
-            EmailTemplateLayer emailTemplateLayer = new EmailTemplateLayer();
+            EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
             objTemplate.listTemplate = emailTemplateLayer.Selectalldata();
 
             return View(objTemplate);
@@ -35,7 +35,7 @@ namespace cvManagement.Controllers
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            EmailTemplateLayer emailTemplateLayer = new EmailTemplateLayer();
+            EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
             int result = emailTemplateLayer.DeleteData(id);
             TempData["DeleteResult"] = result;
             ModelState.Clear();
@@ -46,16 +46,16 @@ namespace cvManagement.Controllers
 
         #region createEditTemplate
         /// <summary>
-        /// hien thi man hinh them sua blog
+        /// hien thi man hinh them sua template
         /// </summary>
         /// <param name="id" value="string"></param>
-        /// <returns>hien thi man hinh them,sua blog</returns>
+        /// <returns>hien thi man hinh them,sua template</returns>
         [HttpGet]
         public ActionResult createEditTemplate(string id)
         {
             if (id != null)
             {
-                EmailTemplateLayer emailTemplateLayer = new EmailTemplateLayer();
+                EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
 
                 return View(emailTemplateLayer.SelectDataById(id));
             }
@@ -71,10 +71,10 @@ namespace cvManagement.Controllers
 
         #region createEditBlog
         /// <summary>
-        ///     chuc nang them hoac sua blog dua tren id
+        ///     chuc nang them hoac sua template dua tren id
         /// </summary>
-        /// <param name="blobj" value="blobj"></param>
-        /// <returns>Quay ve man hinh hien thi toan bo blog</returns>
+        /// <param name="emailtemplate" value="emailTemplate"></param>
+        /// <returns>Quay ve man hinh hien thi toan bo template</returns>
         [HttpPost]
         public ActionResult createEditTemplate(emailTemplate emailtemplate)
         {
@@ -82,7 +82,7 @@ namespace cvManagement.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    EmailTemplateLayer emailTemplateLayer = new EmailTemplateLayer();
+                    EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
                     string result = emailTemplateLayer.Updatedata(emailtemplate);
                     TempData["UpdateResult"] = result;
                     ModelState.Clear();
@@ -100,7 +100,7 @@ namespace cvManagement.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    EmailTemplateLayer emailTemplateLayer = new EmailTemplateLayer();
+                    EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
                     string result = emailTemplateLayer.Insertdata(emailtemplate);
                     TempData["InsertResult"] = result;
                     ModelState.Clear();

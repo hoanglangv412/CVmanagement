@@ -14,6 +14,8 @@ namespace cvManagement.Models
         public string PassWord { get; set; }
         public int Role { get; set; }
 
+        public List<Account> listAccount;
+
         public Account() { }
 
         public Account(int id, string name, string password, int role)

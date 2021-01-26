@@ -120,9 +120,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EmailTemplate\EmailTemplateController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmailTemplateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DataAccessLayer\EmailTemplateLayer.cs" />
+    <Compile Include="DataAccessLayer\AccountAccessLayer.cs" />
+    <Compile Include="DataAccessLayer\EmailTemplateAccessLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,6 +158,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="css\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -172,6 +175,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\EmailTemplate\ShowAllTemplates.cshtml" />
     <Content Include="Views\EmailTemplate\createEditTemplate.cshtml" />
+    <Content Include="Views\Account\ShowAllAccounts.cshtml" />
+    <Content Include="Views\Account\createEditAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

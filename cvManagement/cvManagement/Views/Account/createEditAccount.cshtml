@@ -1,0 +1,88 @@
+﻿@model cvManagement.Models.Account
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = Model.Id;
+    if (id > 0)
+    {
+        <h2>Edit Account</h2>
+    }
+    else
+    {
+        <h2>Insert Account</h2>
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Account</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("txtname",null,new { @class = "form-control" } )
+        </div>
+    </div>
+    @{
+        if (id > 0)
+        {
+            <div class="form-group">
+                @Html.Label("OldPassWord", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("NewPassWord", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("NewPassWordAgain", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else if (id == 0)
+        {
+            <div class="form-group">
+                @Html.Label("PassWord", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("password",null,new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("PassWordAgain", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("passwordAgain",null, new { @class = "form-control" })
+                </div>
+            </div>
+        }
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("role",null,new { @class = "form-control" } )
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ShowAllAcounts")
+</div>

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace cvManagement.DataAccessLayer
 {
-    public class EmailTemplateLayer
+    public class EmailTemplateAccessLayer
     {
         #region Selectalldata
         /// <summary>
