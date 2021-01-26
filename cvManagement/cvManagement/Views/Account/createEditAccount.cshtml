@@ -16,71 +16,68 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Account</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBox("txtname",null,new { @class = "form-control" } )
+    <div class="form-horizontal">
+        <h4>Account</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    @{
-        if (id > 0)
-        {
-            <div class="form-group">
-                @Html.Label("OldPassWord", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+        @{
+            if (id > 0)
+            {
+                <div class="form-group">
+                    @Html.Label("OldPassWord", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Password("oldpassword", null, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("NewPassWord", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("NewPassWord", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Password("newpassword", null, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("NewPassWordAgain", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("NewPassWordAgain", null, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Password("newpasswordagain", null, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
+            }
+            else if (id == 0)
+            {
+                <div class="form-group">
+                    @Html.Label("PassWord", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Password("password", null, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("PassWordAgain", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Password("passwordAgain", null, new { @class = "form-control" })
+                    </div>
+                </div>
+            }
         }
-        else if (id == 0)
-        {
-            <div class="form-group">
-                @Html.Label("PassWord", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBox("password",null,new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.Label("PassWordAgain", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBox("passwordAgain",null, new { @class = "form-control" })
-                </div>
-            </div>
-        }
-    }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBox("role",null,new { @class = "form-control" } )
+        <div class="form-group">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Role, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Submit" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>

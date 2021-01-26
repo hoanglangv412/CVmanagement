@@ -76,18 +76,30 @@ namespace cvManagement.Controllers
         /// <param name="" value="Account"></param>
         /// <returns>Quay ve man hinh hien thi toan bo account</returns>
         [HttpPost]
-        public ActionResult createEditAccount(Account account,FormCollection form)
+        public ActionResult createEditAccount(Account account, FormCollection form)
         {
             if (account.Id > 0)
             {
                 if (ModelState.IsValid)
                 {
                     AccountAccessLayer accountAccessLayer = new AccountAccessLayer();
-                    string result = accountAccessLayer.Updatedata(account);
-                    TempData["UpdateResult"] = result;
-                    ModelState.Clear();
+                    string oldpassword = form["oldpassword"];
+                    string newpasswordAgain = form["newpasswordagain"];
+                    string newpassword = form["newpassword"];
+                    if (newpasswordAgain == newpassword && !accountAccessLayer.CheckPasswordAndId(oldpassword, account.Id))
+                    {
+                        Account updatedAccount = new Account();
+                        updatedAccount.Id = account.Id;
+                        updatedAccount.Name = account.Name;
+                        updatedAccount.PassWord = newpassword;
+                        updatedAccount.Role = account.Role;
+                        string result = accountAccessLayer.Updatedata(updatedAccount);
+                        TempData["UpdateResult"] = result;
+                        ModelState.Clear();
 
-                    return RedirectToAction("ShowAllAccounts");
+                        return RedirectToAction("ShowAllAccounts");
+                    }
+                    else return View();
                 }
                 else
                 {
@@ -101,13 +113,15 @@ namespace cvManagement.Controllers
                 if (ModelState.IsValid)
                 {
                     AccountAccessLayer accountAccessLayer = new AccountAccessLayer();
-                    string name = form["txtname"];
                     string password = form["password"];
                     string passwordAgain = form["passwordAgain"];
-                    string role = form["role"];
                     if (password == passwordAgain)
                     {
-                        string result = accountAccessLayer.Insertdata(account);
+                        Account insertedAccount = new Account();
+                        insertedAccount.Name = account.Name;
+                        insertedAccount.PassWord = password;
+                        insertedAccount.Role = account.Role;
+                        string result = accountAccessLayer.Insertdata(insertedAccount);
                         TempData["InsertResult"] = result;
                         ModelState.Clear();
 
@@ -126,4 +140,3 @@ namespace cvManagement.Controllers
             #endregion createEditAccount
         }
     }
-}

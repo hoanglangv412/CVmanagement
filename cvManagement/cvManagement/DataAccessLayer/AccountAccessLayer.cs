@@ -207,5 +207,44 @@ namespace cvManagement.DataAccessLayer
             }
         }
         #endregion DeleteData
+
+        #region CheckPasswordAndId
+        /// <summary>
+        /// kiem tra co ton tai password
+        /// </summary>
+        /// <param name="ID" value="int"></param>
+        /// <returns name="result" value="int"></returns>
+        public bool CheckPasswordAndId(String password, int id)
+        {
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+                SqlCommand cmd = new SqlCommand("Usp_Account", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@name", null);
+                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@role", null);
+                cmd.Parameters.AddWithValue("@query", 6);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        #endregion CheckPasswordAndId
     }
 }

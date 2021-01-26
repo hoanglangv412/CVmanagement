@@ -41,5 +41,10 @@ BEGIN
 			SELECT * FROM Account
 			WHERE Account.id = @id
 		END
+	IF(@Query = 6)
+	BEGIN
+		SELECT * FROM Account
+		WHERE Account.password = @password and Account.id = @id
+	END
 END
 
