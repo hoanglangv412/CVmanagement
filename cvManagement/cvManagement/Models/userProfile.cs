@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,6 +21,7 @@ namespace cvManagement.Models
         public int Status { get; set; }
         public string CvLink { get; set; }
         public string Note { get; set; }
+        public List<userProfile> ListProfile { get; set; }
 
         public userProfile() { }
 

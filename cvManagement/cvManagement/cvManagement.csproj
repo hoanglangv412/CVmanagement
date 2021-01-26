@@ -120,11 +120,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailTemplateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataAccessLayer\AccountAccessLayer.cs" />
     <Compile Include="DataAccessLayer\EmailTemplateAccessLayer.cs" />
+=======
+    <Compile Include="Controllers\userProfileController.cs" />
+    <Compile Include="DataAccess\DataAccessLayer.cs" />
+>>>>>>> 5dc8374f37e3964f98517c213ceb60f45c442368
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
