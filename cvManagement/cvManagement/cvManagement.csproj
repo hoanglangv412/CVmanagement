@@ -124,12 +124,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailTemplateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\userProfileController.cs" />
     <Compile Include="DataAccessLayer\AccountAccessLayer.cs" />
     <Compile Include="DataAccessLayer\EmailTemplateAccessLayer.cs" />
+<<<<<<< HEAD
 =======
     <Compile Include="Controllers\userProfileController.cs" />
     <Compile Include="DataAccess\DataAccessLayer.cs" />
 >>>>>>> 5dc8374f37e3964f98517c213ceb60f45c442368
+=======
+    <Compile Include="DataAccessLayer\UserProfileLayer.cs" />
+>>>>>>> kieu
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\userProfile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
