@@ -12,11 +12,11 @@ namespace cvManagement.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string PassWord { get; set; }
-        public string Role { get; set; }
+        public int Role { get; set; }
 
         public Account() { }
 
-        public Account(int id, string name, string password, string role)
+        public Account(int id, string name, string password, int role)
         {
             Id = id;
             Name = name;
