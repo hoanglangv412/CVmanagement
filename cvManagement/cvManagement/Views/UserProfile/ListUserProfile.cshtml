@@ -1,0 +1,92 @@
+﻿@model cvManagement.Models.userProfile
+
+@{
+    ViewBag.Title = "ListUserProfile";
+}
+
+<h4>List Profile</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                HỌ VÀ TÊN
+            </th>
+            <th>
+                VỊ TRÍ
+            </th>
+            <th>
+                NGUỒN NHẬN HỒ SƠ
+            </th>
+            <th>
+                NGÀY NHẬN HỒ SƠ
+            </th>
+            <th>
+                KẾT QUẢ LỌC HỒ SƠ
+            </th>
+            <th>
+                NGÀY HẸN PHỎNG VẤN
+            </th>
+            <th>
+                KẾT QUẢ PHỎNG VẤN
+            </th>
+            <th>
+                TRẠNG THÁI
+            </th>
+            <th>
+                CV
+            </th>
+            <th>
+                GHI CHÚ
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ListProfile)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SourceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplyDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CvResult)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewResult)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CvLink)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "NewsEditBlog", new { id = item.BlogID })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.BlogID }, new { @class = "btn btn-outline-danger" })
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

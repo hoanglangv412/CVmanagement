@@ -1,0 +1,94 @@
+﻿@model cvManagement.Models.userProfile
+
+@{
+    ViewBag.Title = "InsertUserProfile";
+}
+
+<h2>New Profile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(Model => Model.Id)
+
+        <div class="form-group">
+            <label class="col-md-2">Họ và tên</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Vị trí</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CvResult, new List<SelectListItem>
+                {
+                   new SelectListItem{ Text="Fresher C#", Value = "1" },
+                   new SelectListItem{ Text="C#", Value = "2" },
+                    new SelectListItem{ Text="Fresher PHP", Value = "3" },
+                   new SelectListItem{ Text="PHP", Value = "4" },
+                    new SelectListItem{ Text="tester", Value = "5" },
+                })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Nguồn nhận hồ sơ</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CvResult, new List<SelectListItem>
+                {
+                   new SelectListItem{ Text="topcv", Value = "1" },
+                   new SelectListItem{ Text="vncareer", Value = "2" },
+                })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-2">Ngày nhận hồ sơ</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ApplyDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplyDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Trạng Thái</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CvResult, new List<SelectListItem>
+                {
+                   new SelectListItem{ Text="Đã nhận CV", Value = "1" },
+                   new SelectListItem{ Text="Đã gửi thư cảm ơn", Value = "2" },
+                   new SelectListItem{ Text="Nhận việc", Value = "3" },
+                })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">CV</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CvLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CvLink, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Ghi chú</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex justify-content-center">
+            <input type="submit" value="Submit" class="btn btn-success mr-1" />
+            <input type="reset" value="Clear" class="btn btn-primary" />
+        </div>
+    </div>
+}
+

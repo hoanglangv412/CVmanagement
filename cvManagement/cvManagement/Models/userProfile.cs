@@ -14,8 +14,17 @@ namespace cvManagement.Models
         public string Name { get; set; }
         public int PositionId { get; set; }
         public int SourceId { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [cvManagement.Models.CustomValidationAttribute.ValidDate(ErrorMessage = "Ngày không được lớn hơn ngày hiện tại.")]
         public DateTime ApplyDate { get; set; }
         public int CvResult { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime InterviewDate { get; set; }
         public int InterviewResult { get; set; }
         public int Status { get; set; }

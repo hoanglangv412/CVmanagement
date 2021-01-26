@@ -23,7 +23,7 @@ namespace cvManagement.DataAccess
 
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -68,7 +68,7 @@ namespace cvManagement.DataAccess
 
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -110,7 +110,7 @@ namespace cvManagement.DataAccess
             List<userProfile> ListProfile = null;
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -182,7 +182,7 @@ namespace cvManagement.DataAccess
             userProfile pro = null;
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -252,7 +252,7 @@ namespace cvManagement.DataAccess
 
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure

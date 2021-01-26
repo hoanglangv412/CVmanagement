@@ -122,17 +122,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmailTemplateController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\userProfileController.cs" />
     <Compile Include="DataAccessLayer\AccountAccessLayer.cs" />
     <Compile Include="DataAccessLayer\EmailTemplateAccessLayer.cs" />
-    <Compile Include="Controllers\userProfileController.cs" />
     <Compile Include="DataAccess\DataAccessLayer.cs" />
     <Compile Include="DataAccessLayer\UserProfileLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\CustomValidationAttribute.cs" />
     <Compile Include="Models\emailTemplate.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Source.cs" />
@@ -174,17 +173,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\EmailTemplate\ShowAllTemplates.cshtml" />
     <Content Include="Views\EmailTemplate\createEditTemplate.cshtml" />
     <Content Include="Views\Account\ShowAllAccounts.cshtml" />
     <Content Include="Views\Account\createEditAccount.cshtml" />
+    <Content Include="Views\UserProfile\InsertUserProfile.cshtml" />
+    <Content Include="Views\UserProfile\ListUserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\userProfile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

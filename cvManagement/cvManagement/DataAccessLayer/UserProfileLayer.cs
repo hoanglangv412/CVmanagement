@@ -109,7 +109,7 @@ namespace cvManagement.DataAccessLayer
             List<userProfile> ListProfile = null;
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
