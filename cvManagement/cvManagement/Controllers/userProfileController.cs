@@ -1,4 +1,5 @@
 using cvManagement.DataAccessLayer;
+using cvManagement.DataAccess;
 using cvManagement.Models;
 using System.Web.Mvc;
 namespace cvManagement.Controllers
@@ -73,4 +74,3 @@ namespace cvManagement.Controllers
         }
     }
 }
-
