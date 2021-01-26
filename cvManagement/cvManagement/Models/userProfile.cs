@@ -20,6 +20,7 @@ namespace cvManagement.Models
         public int Status { get; set; }
         public string CvLink { get; set; }
         public string Note { get; set; }
+        public List<userProfile> ListProfile { get; set; }
 
         public userProfile() { }
 
