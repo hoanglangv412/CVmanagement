@@ -226,7 +226,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@role", null);
-                cmd.Parameters.AddWithValue("@query", 6);
+                cmd.Parameters.AddWithValue("@Query", 6);
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.Read())
                 {
@@ -237,7 +237,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return false;
             }
             finally
