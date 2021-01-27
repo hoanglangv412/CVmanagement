@@ -1,9 +1,7 @@
 ﻿@model cvManagement.Models.userProfile
-
 @{
     ViewBag.Title = "ListUserProfile";
 }
-
 <h4>List Profile</h4>
 <table class="table table-bordered">
     <thead>
@@ -80,13 +78,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Note)
                 </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "NewsEditBlog", new { id = item.BlogID })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.BlogID }, new { @class = "btn btn-outline-danger" })
-                    </td>*@
             </tr>
         }
     </tbody>
 </table>
+<div class="container">
+    @Html.ActionLink("Create", "InsertUserProfile", null, new { @class = "btn btn-primary" })
+</div>
+

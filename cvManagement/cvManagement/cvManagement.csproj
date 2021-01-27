@@ -125,7 +125,6 @@
     <Compile Include="Controllers\userProfileController.cs" />
     <Compile Include="DataAccessLayer\AccountAccessLayer.cs" />
     <Compile Include="DataAccessLayer\EmailTemplateAccessLayer.cs" />
-    <Compile Include="DataAccess\DataAccessLayer.cs" />
     <Compile Include="DataAccessLayer\UserProfileLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
