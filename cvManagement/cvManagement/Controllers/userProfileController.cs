@@ -1,5 +1,6 @@
 using cvManagement.DataAccessLayer;
 using cvManagement.Models;
+using System.Linq;
 using System.Web.Mvc;
 namespace cvManagement.Controllers
 {
@@ -23,6 +24,7 @@ namespace cvManagement.Controllers
         [HttpPost]
         public ActionResult InsertUserProfile(userProfile pro)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 UserProfileLayer objDB = new UserProfileLayer();

@@ -22,19 +22,16 @@ namespace cvManagement.DataAccessLayer
 
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@Name", pro.Name);
+                cmd.Parameters.AddWithValue("@name", pro.Name);
                 cmd.Parameters.AddWithValue("@positionId", pro.PositionId);
                 cmd.Parameters.AddWithValue("@sourceId", pro.SourceId);
                 cmd.Parameters.AddWithValue("@applyDate", pro.ApplyDate);
                 cmd.Parameters.AddWithValue("@cvResult", pro.CvResult);
-                cmd.Parameters.AddWithValue("@interviewDate", pro.InterviewDate);
-                cmd.Parameters.AddWithValue("@interviewResult", pro.InterviewResult);
-                cmd.Parameters.AddWithValue("@status", pro.Status);
                 cmd.Parameters.AddWithValue("@cvLink", pro.CvLink);
                 cmd.Parameters.AddWithValue("@note", pro.Note);
                 cmd.Parameters.AddWithValue("@Query", 1);
@@ -67,7 +64,7 @@ namespace cvManagement.DataAccessLayer
 
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -181,7 +178,7 @@ namespace cvManagement.DataAccessLayer
             userProfile pro = null;
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -251,7 +248,7 @@ namespace cvManagement.DataAccessLayer
 
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
                 {
                     CommandType = CommandType.StoredProcedure

@@ -16,7 +16,7 @@ namespace cvManagement
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Account", action = "ShowAllAccounts", id = UrlParameter.Optional }
+                defaults: new { controller = "userProfile", action = "ListUserProfile", id = UrlParameter.Optional }
             );
         }
     }
