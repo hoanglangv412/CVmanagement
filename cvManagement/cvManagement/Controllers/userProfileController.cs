@@ -26,8 +26,8 @@ namespace cvManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserProfileLayer objDB = new UserProfileLayer();
-                string result = objDB.InsertData(pro);
+                UserProfileLayer upl = new UserProfileLayer();
+                string result = upl.InsertData(pro);
                 TempData["result1"] = result;
                 ModelState.Clear();
 
@@ -64,10 +64,10 @@ namespace cvManagement.Controllers
         [HttpGet]
         public ActionResult SearchProfileByName(string ID)
         {
-            UserProfileLayer dal = new UserProfileLayer();
+            UserProfileLayer upl = new UserProfileLayer();
             userProfile pro = new userProfile
             {
-                ListProfile = dal.SearchProfileByName(ID)
+                ListProfile = upl.SearchProfileByName(ID)
             };
 
             return View(pro);

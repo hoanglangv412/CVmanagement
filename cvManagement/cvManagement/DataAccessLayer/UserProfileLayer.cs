@@ -31,6 +31,9 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@positionId", pro.PositionId);
                 cmd.Parameters.AddWithValue("@sourceId", pro.SourceId);
                 cmd.Parameters.AddWithValue("@applyDate", pro.ApplyDate);
+                cmd.Parameters.AddWithValue("@cvResult", 0);
+                cmd.Parameters.AddWithValue("@interviewDate", System.Data.SqlTypes.SqlDateTime.MinValue);
+                cmd.Parameters.AddWithValue("@interviewResult", 0);
                 cmd.Parameters.AddWithValue("@status", pro.Status);
                 cmd.Parameters.AddWithValue("@cvLink", pro.CvLink);
                 cmd.Parameters.AddWithValue("@note", pro.Note);
@@ -146,8 +149,8 @@ namespace cvManagement.DataAccessLayer
                         InterviewDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["interviewDate"].ToString()),
                         InterviewResult = Convert.ToInt32(ds.Tables[0].Rows[i]["interviewResult"].ToString()),
                         Status = Convert.ToInt32(ds.Tables[0].Rows[i]["status"].ToString()),
-                        CvLink = ds.Tables[0].Rows[i]["name"].ToString(),
-                        Note = ds.Tables[0].Rows[i]["name"].ToString()
+                        CvLink = ds.Tables[0].Rows[i]["cvLink"].ToString(),
+                        Note = ds.Tables[0].Rows[i]["note"].ToString()
                     };
 
                     ListProfile.Add(pro);

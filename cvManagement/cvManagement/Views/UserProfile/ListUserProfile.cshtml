@@ -42,35 +42,132 @@
         </tr>
     </thead>
     <tbody>
+        @{ int rowNo = 0; }
         @foreach (var item in Model.ListProfile)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id)
+                    @(rowNo += 1)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PositionId)
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.PositionId).ToString())
+                        {
+                            case "1":
+                                <text>
+                                    <p>Fresher C#</p>
+                                </text>
+                                break;
+                            case "2":
+                                <text>
+                                    <p>C#</p>
+                                </text>
+                                break;
+                            case "3":
+                                <text>
+                                    <p>Fresher PHP</p>
+                                </text>
+                                break;
+                            case "4":
+                                <text>
+                                    <p>PHP</p>
+                                </text>
+                                break;
+                            case "5":
+                                <text>
+                                    <p>tester</p>
+                                </text>
+                                break;
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SourceId)
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.SourceId).ToString())
+                        {
+                            case "1":
+                                <text>
+                                    <p>topcv</p>
+                                </text>
+                                break;
+                            case "2":
+                                <text>
+                                    <p>vncareer</p>
+                                </text>
+                                break;
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ApplyDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CvResult)
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.CvResult).ToString())
+                        {
+                            case "0":
+                                <button type="button" class="btn btn-light" disabled>Neutral</button>
+                                break;
+                            case "1":
+                                <button type="button" class="btn btn-success" disabled>Pass</button>
+                                break;
+                            case "2":
+                                <button type="button" class="btn btn-danger" disabled>Fail</button>
+                                break;
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.InterviewDate)
+                    @if (item.InterviewDate == DateTime.MinValue)
+                    {
+                        @Html.TextBox("")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.InterviewDate)
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.InterviewResult)
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.InterviewResult).ToString())
+                        {
+                            case "0":
+                                <button type="button" class="btn btn-light" disabled>Neutral</button>
+                                break;
+                            case "1":
+                                <button type="button" class="btn btn-success" disabled>Pass</button>
+                                break;
+                            case "2":
+                                <button type="button" class="btn btn-danger" disabled>Fail</button>
+                                break;
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.Status).ToString())
+                        {
+                            case "1":
+                                <text>
+                                    <p>Đã nhận CV</p>
+                                </text>
+                                break;
+                            case "2":
+                                <text>
+                                    <p>Đã gửi thư cảm ơn</p>
+                                </text>
+                                break;
+                            case "3":
+                                <text>
+                                    <p>Nhận việc</p>
+                                </text>
+                                break;
+
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CvLink)

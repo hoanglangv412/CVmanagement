@@ -141,7 +141,6 @@ namespace cvManagement.Controllers
                 }
             }
         }
-<<<<<<< HEAD
         #endregion createEditAccount
         #region updatePassword
         [HttpGet]
@@ -190,7 +189,5 @@ namespace cvManagement.Controllers
             }
         }
         #endregion updatePassword
-=======
->>>>>>> 9764dbf397881c57e759432465a4abcea0855da3
     }
 }
