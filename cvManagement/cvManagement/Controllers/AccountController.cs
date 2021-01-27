@@ -83,15 +83,16 @@ namespace cvManagement.Controllers
                 if (ModelState.IsValid)
                 {
                     AccountAccessLayer accountAccessLayer = new AccountAccessLayer();
-                    string oldpassword = form["oldpassword"];
-                    string newpasswordAgain = form["newpasswordagain"];
-                    string newpassword = form["newpassword"];
-                    if (newpasswordAgain == newpassword && !accountAccessLayer.CheckPasswordAndId(oldpassword, account.Id))
+                    string password = form["oldpassword"];
+                    int id = account.Id;
+                    //string newpasswordAgain = form["newpasswordagain"];
+                    //string newpassword = form["newpassword"];
+                    if (password == account.PassWord)
                     {
                         Account updatedAccount = new Account();
                         updatedAccount.Id = account.Id;
                         updatedAccount.Name = account.Name;
-                        updatedAccount.PassWord = newpassword;
+                        updatedAccount.PassWord = password;
                         updatedAccount.Role = account.Role;
                         string result = accountAccessLayer.Updatedata(updatedAccount);
                         TempData["UpdateResult"] = result;
@@ -99,7 +100,9 @@ namespace cvManagement.Controllers
 
                         return RedirectToAction("ShowAllAccounts");
                     }
-                    else return View();
+                    else {
+                        return View();
+                    }
                 }
                 else
                 {
@@ -137,7 +140,57 @@ namespace cvManagement.Controllers
                     return View();
                 }
             }
-            #endregion createEditAccount
         }
+<<<<<<< HEAD
+        #endregion createEditAccount
+        #region updatePassword
+        [HttpGet]
+        public ActionResult updatePassword(string id)
+        {
+            AccountAccessLayer accountAccessLayer = new AccountAccessLayer();
+
+            return View(accountAccessLayer.SelectDataById(id));
+        }
+        #endregion updatePassword
+        #region updatePassword
+        /// <summary>
+        ///     chuc nang cap nhat mat khau
+        /// </summary>
+        /// <param name="" value="Account"></param>
+        /// <returns>Quay ve man hinh hien thi createAndEdit</returns>
+        [HttpPost]
+        public ActionResult updatePassword(Account account, FormCollection form)
+        {
+            if (ModelState.IsValid)
+            {
+                AccountAccessLayer accountAccessLayer = new AccountAccessLayer();
+                string oldpassword = form["oldpassword"];
+                string newpasswordAgain = form["newpasswordagain"];
+                string newpassword = form["newpassword"];
+                if (account.PassWord == oldpassword && newpasswordAgain == newpassword)
+                {
+                    Account updatedAccount = new Account();
+                    updatedAccount.Id = account.Id;
+                    updatedAccount.Name = account.Name;
+                    updatedAccount.PassWord = newpassword;
+                    updatedAccount.Role = account.Role;
+                    string result = accountAccessLayer.Updatedata(updatedAccount);
+                    TempData["UpdateResult"] = result;
+                    ModelState.Clear();
+
+                    return RedirectToAction("ShowAllAccounts");
+                }
+                else return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Error in updating data");
+
+                return View();
+            }
+        }
+        #endregion updatePassword
+=======
+>>>>>>> 9764dbf397881c57e759432465a4abcea0855da3
     }
 }

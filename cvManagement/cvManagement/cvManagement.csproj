@@ -178,6 +178,7 @@
     <Content Include="Views\Account\createEditAccount.cshtml" />
     <Content Include="Views\UserProfile\InsertUserProfile.cshtml" />
     <Content Include="Views\UserProfile\ListUserProfile.cshtml" />
+    <Content Include="Views\Account\updatePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
