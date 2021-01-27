@@ -13,7 +13,6 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(Model => Model.Id)
 
         <div class="form-group">
             <label class="col-md-2">Họ và tên</label>
@@ -60,7 +59,7 @@
         <div class="form-group">
             <label class="col-md-2">Trạng Thái</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CvResult, new List<SelectListItem>
+                @Html.DropDownListFor(model => model.Status, new List<SelectListItem>
                 {
                    new SelectListItem{ Text="Đã nhận CV", Value = "1" },
                    new SelectListItem{ Text="Đã gửi thư cảm ơn", Value = "2" },

@@ -31,7 +31,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@positionId", pro.PositionId);
                 cmd.Parameters.AddWithValue("@sourceId", pro.SourceId);
                 cmd.Parameters.AddWithValue("@applyDate", pro.ApplyDate);
-                cmd.Parameters.AddWithValue("@cvResult", pro.CvResult);
+                cmd.Parameters.AddWithValue("@status", pro.Status);
                 cmd.Parameters.AddWithValue("@cvLink", pro.CvLink);
                 cmd.Parameters.AddWithValue("@note", pro.Note);
                 cmd.Parameters.AddWithValue("@Query", 1);

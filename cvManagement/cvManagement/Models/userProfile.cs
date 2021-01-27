@@ -16,14 +16,12 @@ namespace cvManagement.Models
         public int SourceId { get; set; }
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Enter Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [cvManagement.Models.CustomValidationAttribute.ValidDate(ErrorMessage = "Ngày không được lớn hơn ngày hiện tại.")]
         public DateTime ApplyDate { get; set; }
         public int CvResult { get; set; }
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Enter Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime InterviewDate { get; set; }
         public int InterviewResult { get; set; }
@@ -31,22 +29,5 @@ namespace cvManagement.Models
         public string CvLink { get; set; }
         public string Note { get; set; }
         public List<userProfile> ListProfile { get; set; }
-
-        public userProfile() { }
-
-        public userProfile(int id, string name, int positionId, int sourceId, DateTime applyDate, int cvResult, DateTime interviewDate, int interviewResult, int status, string cvLink, string note)
-        {
-            Id = id;
-            Name = name;
-            PositionId = positionId;
-            SourceId = sourceId;
-            ApplyDate = applyDate;
-            CvResult = cvResult;
-            InterviewDate = interviewDate;
-            InterviewResult = interviewResult;
-            Status = status;
-            CvLink = cvLink;
-            Note = note;
-        }
     }
 }

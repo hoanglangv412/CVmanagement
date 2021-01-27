@@ -1,6 +1,6 @@
 USE [CVMANAGEMENT]
 GO
-/****** Object:  StoredProcedure [dbo].[Usp_UserProfile]    Script Date: 26-Jan-21 1:33:47 PM ******/
+/****** Object:  StoredProcedure [dbo].[Usp_UserProfile]    Script Date: 27-Jan-21 9:19:45 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9,9 +9,9 @@ ALTER PROCEDURE [dbo].[Usp_UserProfile] @id int = NULL
 , @name varchar(50) = NULL
 , @positionId int = NULL
 , @sourceId int = NULL
-, @applyDate date = NULL
+, @applyDate datetime = NULL
 , @cvResult tinyint = NULL
-, @interviewDate date = NULL
+, @interviewDate datetime = NULL
 , @interviewResult tinyint = NULL
 , @status tinyint = NULL
 , @cvLink text = NULL
@@ -27,12 +27,9 @@ BEGIN
     , sourceId
     , applyDate
     , cvResult
-    , interviewDate
-    , interviewResult
-    , status
     , cvLink
     , note)
-      VALUES (@name, @positionId, @sourceId, @applyDate, @cvResult, @interviewDate, @interviewResult, @status, @cvLink, @note)
+      VALUES (@name, @positionId, @sourceId, @applyDate, @cvResult, @cvLink, @note)
     IF (@@ROWCOUNT > 0)
     BEGIN
       SELECT

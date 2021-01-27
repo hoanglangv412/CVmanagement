@@ -24,7 +24,6 @@ namespace cvManagement.Controllers
         [HttpPost]
         public ActionResult InsertUserProfile(userProfile pro)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 UserProfileLayer objDB = new UserProfileLayer();
