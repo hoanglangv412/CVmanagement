@@ -72,8 +72,8 @@ C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManageme
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\bin\Newtonsoft.Json.xml
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\bin\Antlr3.Runtime.pdb
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\obj\Debug\cvManagement.csprojAssemblyReference.cache
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\obj\Debug\cvManagement.csproj.CoreCompileInputs.cache
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\obj\Debug\cvManagement.csproj.CopyComplete
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\obj\Debug\cvManagement.dll
 C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\obj\Debug\cvManagement.pdb
+C:\Users\tien_\Downloads\DigiDinos\HomeWork\CVmanagement\cvManagement\cvManagement\obj\Debug\cvManagement.csprojAssemblyReference.cache
