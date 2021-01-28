@@ -12,7 +12,9 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+
+        <!--Name input-->
+        <div class="form-group mt-5">
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-xl-2">
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
@@ -24,6 +26,7 @@
             </div>
         </div>
 
+        <!--Password input-->
         <div class="form-group">
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-xl-2">
@@ -34,10 +37,12 @@
                 </div>
             </div>
         </div>
+
+        <!--Password again input-->
         <div class="form-group">
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    @Html.Label("PassWordAgain", htmlAttributes: new { @class = "control-label" })
+                    @Html.Label("PassWord Again", htmlAttributes: new { @class = "control-label" })
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
                     @Html.Password("passwordAgain", null, new { @class = "form-control" })
@@ -45,6 +50,7 @@
             </div>
         </div>
 
+        <!--Role input-->
         <div class="form-group">
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-xl-2">
@@ -59,17 +65,14 @@
             </div>
         </div>
 
+        <!--buttons-->
         <div class="form-group">
             <div class="row">
-                <div class="col d-flex justify-content-center" style="margin-top:5%;">
+                <div class="col d-flex justify-content-center mt-5">
                     <input type="submit" value="Submit" class="btn btn-success" />
-                    @Html.ActionLink("Back", "ShowAllAcounts", null, new { @class = "btn btn-secondary" })
+                    @Html.ActionLink("Back To List", "ShowAllAccounts", null, new { @class = "btn btn-secondary ml-3" })
                 </div>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
