@@ -8,7 +8,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="col">
-        <h4 class="mb-3">New Profile</h4>
+        <h4 class="mb-3">Update profile</h4>
         <form class="needs-validation" novalidate="">
             <div class="row g-3">
                 <div class="col-12">
@@ -31,11 +31,39 @@
                     @Html.DropDownListFor(model => model.SourceId, new SelectList(Model.listSource, "Id", "Name"), new { @class = "form-control" })
                 </div>
                 <div class="col-md-4">
-                    <label for="zip" class="form-label">Apply date</label>
-                    @Html.EditorFor(model => model.ApplyDate, new { htmlAttributes = new { @class = "form-control" } })                   
+                    <label for="applydate" class="form-label">Apply date</label>
+                    @Html.TextBoxFor(model => model.ApplyDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                 
                 </div>
+                @* dgkjsdhgkjdshg *@
+                <div class="col-md-4">
+                    <label for="cvresult" class="form-label">CV result</label>
+                    @Html.DropDownListFor(model => model.CvResult, new List<SelectListItem>
+                    {
+                    new SelectListItem{ Text="--Select--", Value = "0" },
+                    new SelectListItem{ Text="Pass", Value = "1" },
+                    new SelectListItem{ Text="Fail", Value = "2" },
+                    new SelectListItem{ Text="Backup", Value = "3" },
+                    }, new { @class = "form-control" })
+                </div>
+
+                <div class="col-md-4">
+                    <label for="interviewdate" class="form-label">Interview date</label>
+                    @Html.EditorFor(model => model.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-4">
+                    <label for="interviewresult" class="form-label">Interview result</label>
+                    @Html.DropDownListFor(model => model.InterviewResult, new List<SelectListItem>
+                    {
+                    new SelectListItem{ Text="--Select--", Value = "0" },
+                    new SelectListItem{ Text="Pass", Value = "1" },
+                    new SelectListItem{ Text="Fail", Value = "2" },
+                    new SelectListItem{ Text="Backup", Value = "3" },
+                    }, new { @class = "form-control" })
+                </div>
+
                 <div class="col-12">
-                    <label for="username" class="form-label">CV link</label>
+                    <label for="cvlink" class="form-label">CV link</label>
                     <div class="input-group">
                         @Html.EditorFor(model => model.CvLink, new { htmlAttributes = new { @class = "form-control" } })
                         <div class="invalid-feedback">
@@ -44,7 +72,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <label for="address" class="form-label">Email status</label>
+                    <label for="status" class="form-label">Email status</label>
                     @Html.DropDownListFor(model => model.Status, new List<SelectListItem>
                     {
                         new SelectListItem{ Text="Đã nhận CV", Value = "1" },

@@ -1,10 +1,11 @@
 using cvManagement.DataAccessLayer;
 using cvManagement.Models;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 namespace cvManagement.Controllers
 {
-    public class userProfileController : Controller
+    public class UserProfileController : Controller
     {
         /// <summary>
         /// Hien thi man hinh insert Profile
@@ -13,7 +14,12 @@ namespace cvManagement.Controllers
         [HttpGet]
         public ActionResult InsertUserProfile()
         {
-            return View();
+            PositionLayer positionLayer = new PositionLayer();
+            SourceLayer sourceLayer = new SourceLayer();
+            UserProfile userprofile = new UserProfile();
+            userprofile.listPosition = positionLayer.Selectalldata();
+            userprofile.listSource = sourceLayer.Selectalldata();
+            return View(userprofile);
         }
 
         /// <summary>
@@ -22,13 +28,56 @@ namespace cvManagement.Controllers
         /// <param name="pro"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult InsertUserProfile(userProfile pro)
+        public ActionResult InsertUserProfile(UserProfile pro,FormCollection form)
         {
             if (ModelState.IsValid)
             {
                 UserProfileLayer upl = new UserProfileLayer();
                 string result = upl.InsertData(pro);
-                TempData["result1"] = result;
+                TempData["InsertResult"] = result;
+                ModelState.Clear();
+
+                return RedirectToAction("ListUserProfile");
+            }
+
+            else
+            {
+                ModelState.AddModelError("", "Error in saving data");  
+
+                return View();
+            }
+        }
+
+        /// <summary>
+        /// Hien thi man hinh update Profile
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult UpdateUserProfile(string id)
+        {
+            UserProfileLayer userprofilelayer = new UserProfileLayer();
+            PositionLayer positionLayer = new PositionLayer();
+            SourceLayer sourceLayer = new SourceLayer();
+            UserProfile userprofile = new UserProfile();
+            userprofile = userprofilelayer.SelectDatabyID(id);
+            userprofile.listPosition = positionLayer.Selectalldata();
+            userprofile.listSource = sourceLayer.Selectalldata();
+            return View(userprofile);
+        }
+
+        /// <summary>
+        /// Update Profile
+        /// </summary>
+        /// <param name="pro"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UpdateUserProfile(UserProfile pro)
+        {
+            if (ModelState.IsValid)
+            {
+                UserProfileLayer upl = new UserProfileLayer();
+                string result = upl.UpdateData(pro);
+                TempData["UpdateResult"] = result;
                 ModelState.Clear();
 
                 return RedirectToAction("ListUserProfile");
@@ -38,7 +87,7 @@ namespace cvManagement.Controllers
             {
                 ModelState.AddModelError("", "Error in saving data");
 
-                return View();
+                return View(pro);
             }
         }
 
@@ -49,11 +98,15 @@ namespace cvManagement.Controllers
         [HttpGet]
         public ActionResult ListUserProfile()
         {
-            userProfile pro = new userProfile();
-            UserProfileLayer objDB = new UserProfileLayer();
-            pro.ListProfile = objDB.Selectalldata();
+            UserProfile userProfile = new UserProfile();
+            UserProfileLayer userProfileLayer = new UserProfileLayer();
+            SourceLayer sourceLayer = new SourceLayer();
+            PositionLayer positionLayer = new PositionLayer();
 
-            return View(pro);
+            userProfile.listPosition = positionLayer.Selectalldata();
+            userProfile.listSource = sourceLayer.Selectalldata();
+            userProfile.ListProfile = userProfileLayer.Selectalldata();
+            return View(userProfile);
         }
 
         /// <summary>
@@ -65,7 +118,7 @@ namespace cvManagement.Controllers
         public ActionResult SearchProfileByName(string ID)
         {
             UserProfileLayer upl = new UserProfileLayer();
-            userProfile pro = new userProfile
+            UserProfile pro = new UserProfile
             {
                 ListProfile = upl.SearchProfileByName(ID)
             };

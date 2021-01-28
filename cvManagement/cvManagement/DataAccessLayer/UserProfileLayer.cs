@@ -10,48 +10,50 @@ namespace cvManagement.DataAccessLayer
 {
     public class UserProfileLayer
     {
+        const int QUERY1 = 1;
+        const int QUERY2 = 2;
+        const int QUERY3 = 3;
+        const int QUERY4 = 4;
+        const int QUERY5 = 5;
         /// <summary>
         /// Insert data
         /// </summary>
         /// <param name="pro"></param>
         /// <returns></returns>
-        public string InsertData(userProfile pro)
+        public string InsertData(UserProfile pro)
         {
-            SqlConnection con = null;
-            string result;
-
+            SqlConnection conn = null;
+            String result = "";
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+                SqlCommand cmd = new SqlCommand("Usp_UserProfile", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", null);
                 cmd.Parameters.AddWithValue("@name", pro.Name);
                 cmd.Parameters.AddWithValue("@positionId", pro.PositionId);
                 cmd.Parameters.AddWithValue("@sourceId", pro.SourceId);
                 cmd.Parameters.AddWithValue("@applyDate", pro.ApplyDate);
                 cmd.Parameters.AddWithValue("@cvResult", 0);
-                cmd.Parameters.AddWithValue("@interviewDate", System.Data.SqlTypes.SqlDateTime.MinValue);
+                cmd.Parameters.AddWithValue("@interviewDate", "0001-01-01");
                 cmd.Parameters.AddWithValue("@interviewResult", 0);
                 cmd.Parameters.AddWithValue("@status", pro.Status);
                 cmd.Parameters.AddWithValue("@cvLink", pro.CvLink);
                 cmd.Parameters.AddWithValue("@note", pro.Note);
-                cmd.Parameters.AddWithValue("@Query", 1);
-                con.Open();
+                cmd.Parameters.AddWithValue("@Query", QUERY1);
+                conn.Open();
                 result = cmd.ExecuteScalar().ToString();
 
                 return result;
             }
-
-            catch
+            catch (Exception)
             {
-                return result = "";
-            }
 
+                return result = null;
+            }
             finally
             {
-                con.Close();
+                conn.Close();
             }
         }
 
@@ -60,18 +62,16 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="pro"></param>
         /// <returns></returns>
-        public string UpdateData(userProfile pro)
+        public string UpdateData(UserProfile pro)
         {
-            SqlConnection con = null;
-            string result;
-
+            SqlConnection conn = null;
+            String result = "";
             try
             {
-                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_UserProfile", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+                SqlCommand cmd = new SqlCommand("Usp_UserProfile", conn);
+                DateTime a = pro.InterviewDate;
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id", pro.Id);
                 cmd.Parameters.AddWithValue("@name", pro.Name);
                 cmd.Parameters.AddWithValue("@positionId", pro.PositionId);
@@ -83,19 +83,19 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@status", pro.Status);
                 cmd.Parameters.AddWithValue("@cvLink", pro.CvLink);
                 cmd.Parameters.AddWithValue("@note", pro.Note);
-                cmd.Parameters.AddWithValue("@Query", 2);
-                con.Open();
+                cmd.Parameters.AddWithValue("@Query", QUERY2);
+                conn.Open();
                 result = cmd.ExecuteScalar().ToString();
 
                 return result;
             }
-            catch
+            catch (Exception)
             {
-                return result = "";
+                return result = null;
             }
             finally
             {
-                con.Close();
+                conn.Close();
             }
         }
 
@@ -103,10 +103,10 @@ namespace cvManagement.DataAccessLayer
         /// Select all data
         /// </summary>
         /// <returns></returns>
-        public List<userProfile> Selectalldata()
+        public List<UserProfile> Selectalldata()
         {
             SqlConnection con = null;
-            List<userProfile> ListProfile = null;
+            List<UserProfile> ListProfile = null;
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
@@ -125,7 +125,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@status", null);
                 cmd.Parameters.AddWithValue("@cvLink", null);
                 cmd.Parameters.AddWithValue("@note", null);
-                cmd.Parameters.AddWithValue("@Query", 3);
+                cmd.Parameters.AddWithValue("@Query", QUERY3);
                 con.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter
@@ -134,25 +134,37 @@ namespace cvManagement.DataAccessLayer
                 };
                 DataSet ds = new DataSet();
                 da.Fill(ds);
-                ListProfile = new List<userProfile>();
+                ListProfile = new List<UserProfile>();
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    userProfile pro = new userProfile
+                    UserProfile pro = new UserProfile();
+                    pro.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString());
+                    pro.Name = ds.Tables[0].Rows[i]["name"].ToString();
+                    pro.PositionId = Convert.ToInt32(ds.Tables[0].Rows[i]["positionId"].ToString());
+                    pro.SourceId = Convert.ToInt32(ds.Tables[0].Rows[i]["sourceId"].ToString());
+                    pro.ApplyDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["applyDate"].ToString()).Date;
+                    if (ds.Tables[0].Rows[i]["cvResult"] != DBNull.Value)
                     {
-                        Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
-                        Name = ds.Tables[0].Rows[i]["name"].ToString(),
-                        PositionId = Convert.ToInt32(ds.Tables[0].Rows[i]["positionId"].ToString()),
-                        SourceId = Convert.ToInt32(ds.Tables[0].Rows[i]["sourceId"].ToString()),
-                        ApplyDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["applyDate"].ToString()),
-                        CvResult = Convert.ToInt32(ds.Tables[0].Rows[i]["cvResult"].ToString()),
-                        InterviewDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["interviewDate"].ToString()),
-                        InterviewResult = Convert.ToInt32(ds.Tables[0].Rows[i]["interviewResult"].ToString()),
-                        Status = Convert.ToInt32(ds.Tables[0].Rows[i]["status"].ToString()),
-                        CvLink = ds.Tables[0].Rows[i]["cvLink"].ToString(),
-                        Note = ds.Tables[0].Rows[i]["note"].ToString()
-                    };
+                        pro.CvResult = Convert.ToInt32(ds.Tables[0].Rows[i]["cvResult"].ToString());
+                    }
+                    else pro.CvResult = 0;
 
+                    if (ds.Tables[0].Rows[i]["interviewDate"] != DBNull.Value)
+                    {
+                        pro.InterviewDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["interviewDate"].ToString());
+                    }
+                    else pro.InterviewDate = Convert.ToDateTime("0001-01-01");
+
+                    if (ds.Tables[0].Rows[i]["interviewResult"] != DBNull.Value)
+                    {
+                        pro.InterviewResult = Convert.ToInt32(ds.Tables[0].Rows[i]["interviewResult"].ToString());
+                    }
+                    else pro.InterviewResult = 0;
+
+                    pro.Status = Convert.ToInt32(ds.Tables[0].Rows[i]["status"].ToString());
+                    pro.CvLink = ds.Tables[0].Rows[i]["cvLink"].ToString();
+                    pro.Note = ds.Tables[0].Rows[i]["note"].ToString();
                     ListProfile.Add(pro);
                 }
 
@@ -175,10 +187,10 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public userProfile SelectDatabyID(string Id)
+        public UserProfile SelectDatabyID(string Id)
         {
             SqlConnection con = null;
-            userProfile pro = null;
+            UserProfile pro = null;
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
@@ -197,7 +209,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@status", null);
                 cmd.Parameters.AddWithValue("@cvLink", null);
                 cmd.Parameters.AddWithValue("@note", null);
-                cmd.Parameters.AddWithValue("@Query", 4);
+                cmd.Parameters.AddWithValue("@Query", QUERY4);
 
                 SqlDataAdapter da = new SqlDataAdapter
                 {
@@ -208,7 +220,7 @@ namespace cvManagement.DataAccessLayer
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    pro = new userProfile
+                    pro = new UserProfile
                     {
                         Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
                         Name = ds.Tables[0].Rows[i]["name"].ToString(),
@@ -243,11 +255,11 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="Name"></param>
         /// <returns></returns>
-        public List<userProfile> SearchProfileByName(string Name)
+        public List<UserProfile> SearchProfileByName(string Name)
         {
             SqlConnection con = null;
-            userProfile searchProfile;
-            List<userProfile> listSearchProfile = new List<userProfile>();
+            UserProfile searchProfile;
+            List<UserProfile> listSearchProfile = new List<UserProfile>();
 
             try
             {
@@ -267,7 +279,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@status", null);
                 cmd.Parameters.AddWithValue("@cvLink", null);
                 cmd.Parameters.AddWithValue("@note", null);
-                cmd.Parameters.AddWithValue("@Query", 5);
+                cmd.Parameters.AddWithValue("@Query", QUERY5);
 
                 SqlDataAdapter da = new SqlDataAdapter
                 {
@@ -278,7 +290,7 @@ namespace cvManagement.DataAccessLayer
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    searchProfile = new userProfile
+                    searchProfile = new UserProfile
                     {
                         Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
                         Name = ds.Tables[0].Rows[i]["name"].ToString(),

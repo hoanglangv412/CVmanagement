@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit Account</h2>
+<h2>Edit account</h2>
 
 @using (Html.BeginForm())
 {
@@ -19,7 +19,7 @@
         <div class="form-group">
             <div class="row mt-5">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                    @Html.Label("Name", new { @class = "control-label" })
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
@@ -31,7 +31,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    @Html.Label("PassWord", htmlAttributes: new { @class = "control-label" })
+                    @Html.Label("Password ", new { @class = "control-label" })
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
                     @Html.Password("oldpassword", null, new { @class = "form-control" })

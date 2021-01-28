@@ -1,43 +1,49 @@
-﻿@model cvManagement.Models.userProfile
+﻿@model cvManagement.Models.UserProfile
 @{
     ViewBag.Title = "ListUserProfile";
 }
-<h4>List Profile</h4>
-<table class="table table-bordered">
+    <style>
+        button {
+            width: 90px;
+            height: 40px;
+        }
+    </style>
+<h4>List profiles</h4>
+<table class="table">
     <thead>
-        <tr>
+        <tr style="height:50px">
             <th>
-                STT
+                No.
             </th>
             <th>
-                HỌ VÀ TÊN
+                Name
             </th>
             <th>
-                VỊ TRÍ
+                Position
             </th>
             <th>
-                NGUỒN NHẬN HỒ SƠ
+                Source
             </th>
             <th>
-                NGÀY NHẬN HỒ SƠ
+                Apply date
             </th>
             <th>
-                KẾT QUẢ LỌC HỒ SƠ
+                CV result
             </th>
             <th>
-                NGÀY HẸN PHỎNG VẤN
+                Interview date
             </th>
             <th>
-                KẾT QUẢ PHỎNG VẤN
+                Interview result
             </th>
             <th>
-                TRẠNG THÁI
+                Status
             </th>
             <th>
-                CV
+                CV link
             </th>
             <th>
-                GHI CHÚ
+                Note
             </th>
         </tr>
     </thead>
@@ -50,136 +56,127 @@
                     @(rowNo += 1)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.TextBoxFor(modelItem => item.Name, null, new { @class = "form-control" })
                 </td>
                 <td>
-                    @{
-                        switch (@Html.DisplayFor(modelItem => item.PositionId).ToString())
-                        {
-                            case "1":
-                                <text>
-                                    <p>Fresher C#</p>
-                                </text>
-                                break;
-                            case "2":
-                                <text>
-                                    <p>C#</p>
-                                </text>
-                                break;
-                            case "3":
-                                <text>
-                                    <p>Fresher PHP</p>
-                                </text>
-                                break;
-                            case "4":
-                                <text>
-                                    <p>PHP</p>
-                                </text>
-                                break;
-                            case "5":
-                                <text>
-                                    <p>tester</p>
-                                </text>
-                                break;
-                        }
-                    }
+                    @Html.DropDownListFor(modelItem => item.PositionId, new SelectList(Model.listPosition, "Id", "Name", item.PositionId), new { @class = "form-control" })
                 </td>
                 <td>
-                    @{
-                        switch (@Html.DisplayFor(modelItem => item.SourceId).ToString())
-                        {
-                            case "1":
-                                <text>
-                                    <p>topcv</p>
-                                </text>
-                                break;
-                            case "2":
-                                <text>
-                                    <p>vncareer</p>
-                                </text>
-                                break;
-                        }
-                    }
+                    @Html.DropDownListFor(modelItem => item.SourceId, new SelectList(Model.listSource, "Id", "Name", item.SourceId), new { @class = "form-control" })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ApplyDate)
+                    @Html.TextBoxFor(modelItem => item.ApplyDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
                 </td>
                 <td>
                     @{
                         switch (@Html.DisplayFor(modelItem => item.CvResult).ToString())
                         {
                             case "0":
-                                <button type="button" class="btn btn-light" disabled>Neutral</button>
                                 break;
                             case "1":
                                 <button type="button" class="btn btn-success" disabled>Pass</button>
                                 break;
                             case "2":
                                 <button type="button" class="btn btn-danger" disabled>Fail</button>
-                                break;
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.InterviewDate == DateTime.MinValue)
-                    {
-                        @Html.TextBox("")
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.InterviewDate)
-                    }
-                </td>
-                <td>
-                    @{
-                        switch (@Html.DisplayFor(modelItem => item.InterviewResult).ToString())
-                        {
-                            case "0":
-                                <button type="button" class="btn btn-light" disabled>Neutral</button>
-                                break;
-                            case "1":
-                                <button type="button" class="btn btn-success" disabled>Pass</button>
-                                break;
-                            case "2":
-                                <button type="button" class="btn btn-danger" disabled>Fail</button>
-                                break;
-                        }
-                    }
-                </td>
-                <td>
-                    @{
-                        switch (@Html.DisplayFor(modelItem => item.Status).ToString())
-                        {
-                            case "1":
-                                <text>
-                                    <p>Đã nhận CV</p>
-                                </text>
-                                break;
-                            case "2":
-                                <text>
-                                    <p>Đã gửi thư cảm ơn</p>
-                                </text>
                                 break;
                             case "3":
-                                <text>
-                                    <p>Nhận việc</p>
-                                </text>
+                                <button type="button" class="btn btn-info" disabled>Backup</button>
+                                break;
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.InterviewDate, "{0:MM/dd/yyyy}").ToString())
+                        {
+                            case "0001/01/01":
+                                break;
+                            default:
+                                @Html.TextBoxFor(modelItem => item.InterviewDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                                break;
+                        }
+                    }
+                </td>
+                <td>
+                        @switch (@Html.DisplayFor(modelItem => item.InterviewResult).ToString())
+                        {
+                            case "0":
+                                break;
+                            case "1":
+                                <button type="button" class="btn btn-success" disabled>Pass</button>
+                                break;
+                            case "2":
+                                <button type="button" class="btn btn-danger" disabled>Fail</button>
+                                break;
+                            case "3":
+                                <button type="button" class="btn btn-info" disabled>Backup</button>
+                                break;
+                        }
+                </td>
+                <td>
+                        @switch (@Html.DisplayFor(modelItem => item.Status).ToString())
+                        {
+                            case "1":
+                                <input type="text" class="form-control" value="Đã nhận CV" />
+                                break;
+                            case "2":
+                                <input type="text" class="form-control" value="Đã gửi thư cảm ơn" />
+                                break;
+                            case "3":
+                                <input type="text" class="form-control" value="Nhận việc" />
+                                break;
+
+                        }
+                    
+                </td>
+                <td>
+                    @Html.TextBoxFor(modelItem => item.CvLink, new { @class = "form-control" })
+                </td>
+                <td>
+                    @{
+                        switch (@Html.DisplayFor(modelItem => item.Note).ToString())
+                        {
+                            case (""):
+                                break;
+                            default:
+                                @Html.TextBoxFor(modelItem => item.Note, new { @class = "form-control" })
                                 break;
 
                         }
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CvLink)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Note)
+                    @Html.ActionLink("Edit", "UpdateUserProfile", new { id = item.Id }, new { @class = "btn btn-outline-warning" })
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<div class="container">
+<div class="container-xxl d-flex p-2">
     @Html.ActionLink("Create", "InsertUserProfile", null, new { @class = "btn btn-primary" })
 </div>
+@if (TempData["InsertResult"] != null)
+{
+    <script type="text/javascript">
+
+                alert("Record Is Inserted Successfully");
+    </script>
+
+}
+@if (TempData["UpdateResult"] != null)
+{
+    <script type="text/javascript">
+
+                alert("Record Is Updated Successfully");
+    </script>
+
+}
+@if (TempData["DeleteResult"] != null)
+{
+    <script type="text/javascript">
+
+                alert("Record Is Deleted Successfully");
+    </script>
+
+}
 
