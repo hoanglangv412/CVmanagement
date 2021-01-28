@@ -4,15 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>createAccount</h2>
+<h2>Create Account</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Account</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="row">
@@ -23,7 +21,6 @@
                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
-                <div class="col"></div>
             </div>
         </div>
 
@@ -35,8 +32,6 @@
                 <div class="col-md-8 col-lg-8 col-xl-8">
                     @Html.Password("password1", null, new { @class = "form-control" })
                 </div>
-                <div class="col">
-                </div>
             </div>
         </div>
         <div class="form-group">
@@ -46,8 +41,6 @@
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
                     @Html.Password("passwordAgain", null, new { @class = "form-control" })
-                </div>
-                <div class="col">
                 </div>
             </div>
         </div>
@@ -62,8 +55,6 @@
                         new SelectListItem{ Text = "Human Resource",Value="0"},
                         new SelectListItem{ Text = "Interviewer",Value="1"}
                     }, new { @class = "form-control" })
-                </div>
-                <div class="col">
                 </div>
             </div>
         </div>

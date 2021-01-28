@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShowAllAccounts</h2>
+<h2>Account</h2>
 <table class="table">
     <thead>
         <tr>
@@ -14,16 +14,15 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PassWord)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Role)
             </th>
             <th>
             </th>
         </tr>
     </thead>
+    <!--So dong-->
     @{ int rowNo = 0; }
+    <!--Noi Dung-->
     @foreach (var item in Model.listAccount)
     {
         <tr>
@@ -32,9 +31,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <p>****************</p>
             </td>
             <td>
                 @{
@@ -52,9 +48,9 @@
                 @{
                     if (item.Id == Model.account.Id)
                     {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this account?');" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure to delete this account?');" })
 
-                        @Html.ActionLink("Edit", "editAccount", new { id = item.Id }, new { @class = "btn btn-outline-info" })
+                        @Html.ActionLink("Edit", "editAccount", new { id = item.Id }, new { @class = "btn btn-warning ml-2" })
                     }
                 }
             </td>
@@ -62,11 +58,11 @@
     }
 </table>
 
-
 <p>
-    @Html.ActionLink("Create", "createAccount", "", new { @class = "btn btn-outline-primary" })
+    @Html.ActionLink("Create", "createAccount", "", new { @class = "btn btn-primary" })
 </p>
 
+<!--Script thong bao -->
 @if (TempData["InsertResult"] != null)
 {
     <script type="text/javascript">

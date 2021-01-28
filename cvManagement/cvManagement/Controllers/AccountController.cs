@@ -1,9 +1,5 @@
 ﻿using cvManagement.DataAccessLayer;
 using cvManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace cvManagement.Controllers
@@ -78,7 +74,7 @@ namespace cvManagement.Controllers
                 string newpassword = form["newpassword"];
                 if (oldpassword == "" || newpasswordAgain == "" || newpassword == "")
                 {
-                    ModelState.AddModelError("", "oldpassword, newpasswordagain or newpassword is null");
+                    ModelState.AddModelError("", "oldpassword, new password again or new password is null");
 
                     return View(account);
                 }
@@ -86,11 +82,13 @@ namespace cvManagement.Controllers
                 {
                     if (account.PassWord == oldpassword && newpasswordAgain == newpassword)
                     {
-                        Account updatedAccount = new Account();
-                        updatedAccount.Id = account.Id;
-                        updatedAccount.Name = account.Name;
-                        updatedAccount.PassWord = newpassword;
-                        updatedAccount.Role = account.Role;
+                        Account updatedAccount = new Account
+                        {
+                            Id = account.Id,
+                            Name = account.Name,
+                            PassWord = newpassword,
+                            Role = account.Role
+                        };
                         string result = accountAccessLayer.Updatedata(updatedAccount);
                         TempData["UpdateResult"] = result;
                         ModelState.Clear();
@@ -151,7 +149,7 @@ namespace cvManagement.Controllers
                 string passwordAgain = form["passwordAgain"];
                 if (password == "" || passwordAgain == "")
                 {
-                    ModelState.AddModelError("", "Your password or passwordagain is null");
+                    ModelState.AddModelError("", "Your password or password again is null");
 
                     return View();
                 }
@@ -159,10 +157,12 @@ namespace cvManagement.Controllers
                 {
                     if (password == passwordAgain)
                     {
-                        Account insertedAccount = new Account();
-                        insertedAccount.Name = account.Name;
-                        insertedAccount.PassWord = password;
-                        insertedAccount.Role = account.Role;
+                        Account insertedAccount = new Account
+                        {
+                            Name = account.Name,
+                            PassWord = password,
+                            Role = account.Role
+                        };
                         string result = accountAccessLayer.Insertdata(insertedAccount);
                         TempData["InsertResult"] = result;
                         ModelState.Clear();
@@ -226,11 +226,13 @@ namespace cvManagement.Controllers
                 {
                     if (password == account.PassWord)
                     {
-                        Account updatedAccount = new Account();
-                        updatedAccount.Id = account.Id;
-                        updatedAccount.Name = account.Name;
-                        updatedAccount.PassWord = password;
-                        updatedAccount.Role = account.Role;
+                        Account updatedAccount = new Account
+                        {
+                            Id = account.Id,
+                            Name = account.Name,
+                            PassWord = password,
+                            Role = account.Role
+                        };
                         string result = accountAccessLayer.Updatedata(updatedAccount);
                         TempData["UpdateResult"] = result;
                         ModelState.Clear();

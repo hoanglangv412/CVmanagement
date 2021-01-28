@@ -44,7 +44,7 @@ namespace cvManagement.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Accountname or password seems not to be right");
+                    ModelState.AddModelError("", "Accountname or password is wrong");
 
                     return View(objAccount);
                 }

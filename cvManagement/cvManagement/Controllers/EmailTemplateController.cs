@@ -48,10 +48,10 @@ namespace cvManagement.Controllers
         /// <summary>
         /// hien thi man sua template
         /// </summary>
-        /// <param name="id"></param>
+        /// <param></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult createTemplate(string id)
+        public ActionResult createTemplate()
         {
             return View();
         }

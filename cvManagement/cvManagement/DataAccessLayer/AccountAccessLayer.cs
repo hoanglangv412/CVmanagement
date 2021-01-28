@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace cvManagement.DataAccessLayer
 {
     public class AccountAccessLayer
     {
+        const int query1 = 1;
+        const int query2 = 2;
+        const int query4 = 4;
+        const int query3 = 3;
+        const int query5 = 5;
+
         #region Selectalldata
         /// <summary>
         /// Lay toan bo account
@@ -18,31 +22,35 @@ namespace cvManagement.DataAccessLayer
         /// <returns value="List<Account>" name="listAccount"></returns>
         public List<Account> Selectalldata()
         {
-            SqlConnection conn = null;
-            DataSet ds = null;
-            List<Account> listAccount = null;
-
-            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-            SqlCommand cmd = new SqlCommand("Usp_Account", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+            SqlCommand cmd = new SqlCommand("Usp_Account", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             cmd.Parameters.AddWithValue("@id", null);
             cmd.Parameters.AddWithValue("@name", null);
             cmd.Parameters.AddWithValue("@password", null);
             cmd.Parameters.AddWithValue("@role", null);
-            cmd.Parameters.AddWithValue("@Query", 4);
+            cmd.Parameters.AddWithValue("@Query", query4);
             conn.Open();
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmd;
-            ds = new DataSet();
+
+            SqlDataAdapter da = new SqlDataAdapter
+            {
+                SelectCommand = cmd
+            };
+            DataSet ds = new DataSet();
             da.Fill(ds);
-            listAccount = new List<Account>();
+            List<Account> listAccount = new List<Account>();
+
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                Account cobj = new Account();
-                cobj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString());
-                cobj.Name = ds.Tables[0].Rows[i]["name"].ToString();
-                cobj.PassWord = ds.Tables[0].Rows[i]["password"].ToString();
-                cobj.Role = Convert.ToInt32(ds.Tables[0].Rows[i]["role"].ToString());
+                Account cobj = new Account
+                {
+                    Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
+                    Name = ds.Tables[0].Rows[i]["name"].ToString(),
+                    PassWord = ds.Tables[0].Rows[i]["password"].ToString(),
+                    Role = Convert.ToInt32(ds.Tables[0].Rows[i]["role"].ToString())
+                };
                 listAccount.Add(cobj);
             }
 
@@ -59,7 +67,7 @@ namespace cvManagement.DataAccessLayer
         public string Insertdata(Account account)
         {
             SqlConnection conn = null;
-            String result = "";
+            string result;
             try
             {
                 conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
@@ -69,7 +77,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@name", account.Name);
                 cmd.Parameters.AddWithValue("@password", account.PassWord);
                 cmd.Parameters.AddWithValue("@role", account.Role);
-                cmd.Parameters.AddWithValue("@Query", 1);
+                cmd.Parameters.AddWithValue("@Query", query1);
                 conn.Open();
                 result = cmd.ExecuteScalar().ToString();
 
@@ -96,17 +104,19 @@ namespace cvManagement.DataAccessLayer
         public string Updatedata(Account account)
         {
             SqlConnection conn = null;
-            String result = "";
+            string result;
             try
             {
                 conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_Account", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("Usp_Account", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 cmd.Parameters.AddWithValue("@id", account.Id);
                 cmd.Parameters.AddWithValue("@name", account.Name);
                 cmd.Parameters.AddWithValue("@password", account.PassWord);
                 cmd.Parameters.AddWithValue("@role", account.Role);
-                cmd.Parameters.AddWithValue("@Query", 2);
+                cmd.Parameters.AddWithValue("@Query", query2);
                 conn.Open();
                 result = cmd.ExecuteScalar().ToString();
 
@@ -132,30 +142,37 @@ namespace cvManagement.DataAccessLayer
         /// <returns name="foundAccount" value="Account"></returns>
         public Account SelectDataById(string accountId)
         {
-            SqlConnection conn = null;
+            SqlConnection con = null;
             Account foundAccount = null;
-            DataSet ds = null;
             try
             {
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_Account", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+                SqlCommand cmd = new SqlCommand("Usp_Account", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 cmd.Parameters.AddWithValue("@id", accountId);
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@password", null);
                 cmd.Parameters.AddWithValue("@role", null);
-                cmd.Parameters.AddWithValue("@query", 5);
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = cmd;
-                ds = new DataSet();
+                cmd.Parameters.AddWithValue("@query", query5);
+
+                SqlDataAdapter da = new SqlDataAdapter
+                {
+                    SelectCommand = cmd
+                };
+                DataSet ds = new DataSet();
                 da.Fill(ds);
+
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    foundAccount = new Account();
-                    foundAccount.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString());
-                    foundAccount.Name = ds.Tables[0].Rows[i]["name"].ToString();
-                    foundAccount.PassWord = ds.Tables[0].Rows[i]["password"].ToString();
-                    foundAccount.Role = Convert.ToInt32(ds.Tables[0].Rows[i]["role"].ToString());
+                    foundAccount = new Account
+                    {
+                        Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
+                        Name = ds.Tables[0].Rows[i]["name"].ToString(),
+                        PassWord = ds.Tables[0].Rows[i]["password"].ToString(),
+                        Role = Convert.ToInt32(ds.Tables[0].Rows[i]["role"].ToString())
+                    };
                 }
 
                 return foundAccount;
@@ -167,7 +184,7 @@ namespace cvManagement.DataAccessLayer
             }
             finally
             {
-                conn.Close();
+                con.Close();
             }
         }
         #endregion SelectDataById
@@ -185,13 +202,15 @@ namespace cvManagement.DataAccessLayer
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_Account", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("Usp_Account", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 cmd.Parameters.AddWithValue("@id", ID);
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@password", null);
                 cmd.Parameters.AddWithValue("@role", null);
-                cmd.Parameters.AddWithValue("@Query", 3);
+                cmd.Parameters.AddWithValue("@Query", query3);
                 con.Open();
                 result = cmd.ExecuteNonQuery();
 

@@ -2,10 +2,13 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>All Email Templates</h2>
+<h2>Email Templates</h2>
 <table class="table">
-    <thead class="thead-dark">
+    <thead>
         <tr>
+            <th>
+                No
+            </th>
             <th scope="col">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -15,9 +18,15 @@
             <th></th>
         </tr>
     </thead>
+    <!--So dong-->
+    @{ int rowNo = 0; }
+    <!--Noi dung-->
     @foreach (var item in Model.listTemplate)
     {
         <tr>
+            <td>
+                @(rowNo += 1)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -25,8 +34,8 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" ,onclick = "return confirm('Are you sure you wish to delete this template?');" })
-                @Html.ActionLink("Edit", "editTemplate", new { id = item.Id }, new { @class = "btn btn-outline-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you wish to delete this template?');" })
+                @Html.ActionLink("Edit", "editTemplate", new { id = item.Id }, new { @class = "btn btn-warning ml-2" })
             </td>
         </tr>
     }
@@ -34,14 +43,15 @@
 </table>
 
 <p>
-    @Html.ActionLink("Create", "createTemplate", "", new { @class = "btn btn-outline-primary" })
+    @Html.ActionLink("Create", "createTemplate", "", new { @class = "btn btn-primary" })
 </p>
 
+<!--Script thong bao-->
 @if (TempData["InsertResult"] != null)
 {
     <script type="text/javascript">
 
-                alert("Record Is Inserted Successfully");
+        alert("Record Is Inserted Successfully");
     </script>
 
 }
@@ -49,7 +59,7 @@
 {
     <script type="text/javascript">
 
-                alert("Record Is Updated Successfully");
+        alert("Record Is Updated Successfully");
     </script>
 
 }
@@ -57,7 +67,6 @@
 {
     <script type="text/javascript">
 
-                alert("Record Is Deleted Successfully");
+        alert("Record Is Deleted Successfully");
     </script>
-
 }
