@@ -44,78 +44,87 @@ namespace cvManagement.Controllers
         }
         #endregion Delete
 
-        #region createEditTemplate
+        #region createTemplate
         /// <summary>
-        /// hien thi man hinh them sua template
+        /// hien thi man sua template
         /// </summary>
-        /// <param name="id" value="string"></param>
-        /// <returns>hien thi man hinh them,sua template</returns>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
-        public ActionResult createEditTemplate(string id)
+        public ActionResult createTemplate(string id)
         {
-            if (id != null)
+            return View();
+        }
+        #endregion createTemplate
+
+        #region createTemplate
+        /// <summary>
+        /// tao moi template
+        /// </summary>
+        /// <param name="emailtemplate"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult createTemplate(emailTemplate emailtemplate)
+        {
+            if (ModelState.IsValid)
             {
                 EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
+                string result = emailTemplateLayer.Insertdata(emailtemplate);
+                TempData["InsertResult"] = result;
+                ModelState.Clear();
 
-                return View(emailTemplateLayer.SelectDataById(id));
+                return RedirectToAction("ShowAllTemplates");
             }
             else
             {
-                emailTemplate emailtemplate = new emailTemplate();
-                emailtemplate.Id = 0;
+                ModelState.AddModelError("", "Error in saving data to table");
 
-                return View(emailtemplate);
+                return View();
             }
         }
-        #endregion createEditBlog
 
-        #region createEditBlog
+        #endregion createTemplate
+
+        #region editTemplate
         /// <summary>
-        ///     chuc nang them hoac sua template dua tren id
+        /// hien thi man sua template
         /// </summary>
-        /// <param name="emailtemplate" value="emailTemplate"></param>
-        /// <returns>Quay ve man hinh hien thi toan bo template</returns>
-        [HttpPost]
-        public ActionResult createEditTemplate(emailTemplate emailtemplate)
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult editTemplate(string id)
         {
-            if (emailtemplate.Id > 0)
+            EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
+
+            return View(emailTemplateLayer.SelectDataById(id));
+        }
+        #endregion editTemplate
+
+        #region editTemplate
+        /// <summary>
+        /// sua template
+        /// </summary>
+        /// <param name="emailtemplate"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult editTemplate(emailTemplate emailtemplate)
+        {
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
-                    string result = emailTemplateLayer.Updatedata(emailtemplate);
-                    TempData["UpdateResult"] = result;
-                    ModelState.Clear();
+                EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
+                string result = emailTemplateLayer.Updatedata(emailtemplate);
+                TempData["UpdateResult"] = result;
+                ModelState.Clear();
 
-                    return RedirectToAction("ShowAllTemplates");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Error in updating data");
-
-                    return View();
-                }
+                return RedirectToAction("ShowAllTemplates");
             }
             else
             {
-                if (ModelState.IsValid)
-                {
-                    EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
-                    string result = emailTemplateLayer.Insertdata(emailtemplate);
-                    TempData["InsertResult"] = result;
-                    ModelState.Clear();
+                ModelState.AddModelError("", "Error in saving data to table");
 
-                    return RedirectToAction("ShowAllTemplates");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Error in saving data to table");
-
-                    return View();
-                }
+                return View();
             }
-            #endregion createEditBlog
-
         }
+        #endregion editTemplate
     }
 }

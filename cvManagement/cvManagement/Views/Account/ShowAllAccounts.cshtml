@@ -31,11 +31,26 @@
                 <p>****************</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role)
+                @{
+                    if (item.Role == 0)
+                    {
+                        @Html.Label("Human Resource")
+                    }
+                    else
+                    {
+                        @Html.Label("Interviewer")
+                    }
+                }
             </td>
             <td>
-                @Html.ActionLink("Edit", "createEditAccount", new { id = item.Id }, new { @class = "btn btn-outline-warning" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                @{
+                    if (item.Id == Model.account.Id)
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this account?');" })
+
+                        @Html.ActionLink("Edit", "editAccount", new { id = item.Id }, new { @class = "btn btn-outline-info" })
+                    }
+                }
             </td>
         </tr>
     }
@@ -43,5 +58,30 @@
 
 
 <p>
-    @Html.ActionLink("Create", "createEditAccount", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create", "createAccount", "", new { @class = "btn btn-outline-primary" })
 </p>
+
+@if (TempData["InsertResult"] != null)
+{
+    <script type="text/javascript">
+
+                alert("Record Is Inserted Successfully");
+    </script>
+
+}
+@if (TempData["UpdateResult"] != null)
+{
+    <script type="text/javascript">
+
+                alert("Record Is Updated Successfully");
+    </script>
+
+}
+@if (TempData["DeleteResult"] != null)
+{
+    <script type="text/javascript">
+
+                alert("Record Is Deleted Successfully");
+    </script>
+
+}

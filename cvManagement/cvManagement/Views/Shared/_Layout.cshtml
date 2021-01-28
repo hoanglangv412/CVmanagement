@@ -15,6 +15,10 @@
         button {
             width: 100px;
         }
+        textarea {
+            width: 100%;
+            height: 300px;
+        }
     </style>
 </head>
 <body style="padding-top:0;overflow-x:hidden">
@@ -23,17 +27,30 @@
             <div class="col-md-1 col-lg-1 col-xl-1">
                 <img src="~/Photos/logo.png" width="50px" height="50px" />
             </div>
-            <div class="col-md-10 col-lg-10 col-xl-10">
+            <div class="col-md-9 col-lg-9 col-xl-9">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand" href="#">CV management</a>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            @Html.ActionLink("UserProfile", "ListUserProfile", "userProfile", null, new { @class = "nav-link" })
-                            @Html.ActionLink("AccountManagement", "ShowAllAccounts", "Account", null, new { @class = "nav-link" })
-                            @Html.ActionLink("EmailTemplateManagement", "ShowAllTemplates", "EmailTemplate", null, new { @class = "nav-link" })
+                            @{
+                                if (Session["account"] != null)
+                                {
+                                    @Html.ActionLink("UserProfile", "ListUserProfile", "userProfile", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("AccountManagement", "ShowAllAccounts", "Account", null, new { @class = "nav-link" })
+                                    @Html.ActionLink("EmailTemplateManagement", "ShowAllTemplates", "EmailTemplate", null, new { @class = "nav-link" })
+                                }
+                            }
                         </div>
                     </div>
                 </nav>
+            </div>
+            <div class="col-md-1 col-lg-1 col-xl-1">
+                @{
+                    if (Session["account"] != null)
+                    {
+                        @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-danger" ,@style="height:56px"})
+                    }
+                }
             </div>
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1">
@@ -47,7 +64,6 @@
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1">
         </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
