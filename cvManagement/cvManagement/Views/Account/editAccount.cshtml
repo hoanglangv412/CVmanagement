@@ -25,7 +25,6 @@
                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
-                <div class="col"></div>
             </div>
         </div>
 
@@ -53,8 +52,6 @@
                         new SelectListItem{ Text = "Human Resource",Value="0"},
                         new SelectListItem{ Text = "Interviewer",Value="1"}
                     }, new { @class = "form-control" })
-                </div>
-                <div class="col">
                 </div>
             </div>
         </div>

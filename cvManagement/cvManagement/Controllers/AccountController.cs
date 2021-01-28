@@ -157,13 +157,8 @@ namespace cvManagement.Controllers
                 {
                     if (password == passwordAgain)
                     {
-                        Account insertedAccount = new Account
-                        {
-                            Name = account.Name,
-                            PassWord = password,
-                            Role = account.Role
-                        };
-                        string result = accountAccessLayer.Insertdata(insertedAccount);
+                        account.PassWord = password;
+                        string result = accountAccessLayer.Insertdata(account);
                         TempData["InsertResult"] = result;
                         ModelState.Clear();
 

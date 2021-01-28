@@ -22,8 +22,8 @@ namespace cvManagement.DataAccessLayer
         /// <returns value="List<Account>" name="listAccount"></returns>
         public List<Account> Selectalldata()
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-            SqlCommand cmd = new SqlCommand("Usp_Account", conn)
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+            SqlCommand cmd = new SqlCommand("Usp_Account", con)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -32,7 +32,7 @@ namespace cvManagement.DataAccessLayer
             cmd.Parameters.AddWithValue("@password", null);
             cmd.Parameters.AddWithValue("@role", null);
             cmd.Parameters.AddWithValue("@Query", query4);
-            conn.Open();
+            con.Open();
 
             SqlDataAdapter da = new SqlDataAdapter
             {
@@ -66,19 +66,21 @@ namespace cvManagement.DataAccessLayer
         /// <returns name="result" value="string"></returns>
         public string Insertdata(Account account)
         {
-            SqlConnection conn = null;
+            SqlConnection con = null;
             string result;
             try
             {
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_Account", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+                SqlCommand cmd = new SqlCommand("Usp_Account", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 cmd.Parameters.AddWithValue("@id", null);
                 cmd.Parameters.AddWithValue("@name", account.Name);
                 cmd.Parameters.AddWithValue("@password", account.PassWord);
                 cmd.Parameters.AddWithValue("@role", account.Role);
                 cmd.Parameters.AddWithValue("@Query", query1);
-                conn.Open();
+                con.Open();
                 result = cmd.ExecuteScalar().ToString();
 
                 return result;
@@ -90,7 +92,7 @@ namespace cvManagement.DataAccessLayer
             }
             finally
             {
-                conn.Close();
+                con.Close();
             }
         }
         #endregion InsertData
@@ -103,12 +105,12 @@ namespace cvManagement.DataAccessLayer
         /// <returns name="result" value="string"></returns>
         public string Updatedata(Account account)
         {
-            SqlConnection conn = null;
+            SqlConnection con = null;
             string result;
             try
             {
-                conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
-                SqlCommand cmd = new SqlCommand("Usp_Account", conn)
+                con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
+                SqlCommand cmd = new SqlCommand("Usp_Account", con)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -117,7 +119,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@password", account.PassWord);
                 cmd.Parameters.AddWithValue("@role", account.Role);
                 cmd.Parameters.AddWithValue("@Query", query2);
-                conn.Open();
+                con.Open();
                 result = cmd.ExecuteScalar().ToString();
 
                 return result;
@@ -129,7 +131,7 @@ namespace cvManagement.DataAccessLayer
             }
             finally
             {
-                conn.Close();
+                con.Close();
             }
         }
         #endregion Updatedata
