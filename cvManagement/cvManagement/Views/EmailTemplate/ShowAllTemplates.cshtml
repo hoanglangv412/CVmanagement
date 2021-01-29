@@ -2,7 +2,9 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2>Email Templates</h2>
+
 <table class="table">
     <thead>
         <tr>
@@ -34,16 +36,21 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you wish to delete this template?');" })
-                @Html.ActionLink("Edit", "editTemplate", new { id = item.Id }, new { @class = "btn btn-warning ml-2" })
+                <div class="row">
+                    <div class="col-6">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure to delete this template?');" })
+                    </div>
+                    <div class="col-6">
+                        @Html.ActionLink("Edit", "EditTemplate", new { id = item.Id }, new { @class = "btn btn-warning ml-3" })
+                    </div>
+                </div>
             </td>
         </tr>
     }
-
 </table>
 
 <p>
-    @Html.ActionLink("Create", "createTemplate", "", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create", "CreateTemplate", "", new { @class = "btn btn-primary" })
 </p>
 
 <!--Script thong bao-->
