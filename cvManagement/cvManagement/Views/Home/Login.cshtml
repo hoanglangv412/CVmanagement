@@ -32,13 +32,15 @@
     ViewBag.Title = "Login";
     Layout = "";
 }
-@using (Html.BeginForm("Login", "Home", FormMethod.Post))   
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh">
         <div style="width: 100%; max-width: 330px; padding: 15px; margin: auto ">
+
             <!--Thong bao nhap sai-->
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <!--logo-->
             <div class="d-flex align-items-center justify-content-center my-4">
                 <img style="margin-left: 0px" src="~/Photos/logo.png" width="100px" height="100px">
@@ -46,6 +48,7 @@
             <h1 class="h3 mb-3 font-weight-normal d-flex justify-content-center">Sign in</h1>
             @Html.TextBoxFor(model => model.Name, new { placeholder = "Account Name", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
             <!--Password-->
             @Html.PasswordFor(model => model.PassWord, new { placeholder = "Password", @class = "form-control my-3" })
             <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Sign in</button>

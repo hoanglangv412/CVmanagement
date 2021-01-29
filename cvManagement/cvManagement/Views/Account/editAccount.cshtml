@@ -4,6 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!--Tao list Role-->
+@functions{
+    public static readonly List<SelectListItem> LIST_ROLE = new List<SelectListItem>() {
+                        new SelectListItem { Text = "Human Resource", Value = "0"},
+                        new SelectListItem { Text = "Interviewer", Value = "1"},
+                        };
+}
+
 <h2>Edit account</h2>
 
 @using (Html.BeginForm())
@@ -39,7 +47,7 @@
                     @Html.Password("oldpassword", null, new { @class = "form-control" })
                 </div>
                 <div class="col">
-                     @Html.ActionLink("Change password", "updatePassword", new { id = Model.Id }, new { @class = "btn btn-warning", @style = "color:white" })
+                    @Html.ActionLink("Change password", "updatePassword", new { id = Model.Id }, new { @class = "btn btn-warning", @style = "color:white" })
                 </div>
             </div>
         </div>
@@ -51,10 +59,7 @@
                     @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label" })
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
-                    @Html.DropDownListFor(model => model.Role, new List<SelectListItem> {
-                        new SelectListItem{ Text = "Human Resource",Value="0"},
-                        new SelectListItem{ Text = "Interviewer",Value="1"}
-                    }, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Role, LIST_ROLE, new { @class = "form-control" })
                 </div>
             </div>
         </div>
