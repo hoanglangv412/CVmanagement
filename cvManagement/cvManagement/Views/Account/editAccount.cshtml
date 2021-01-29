@@ -33,13 +33,13 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-xl-2">
-                    @Html.Label("Password ", new { @class = "control-label" })
+                    @Html.Label("Password", new { @class = "control-label" })
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
                     @Html.Password("oldpassword", null, new { @class = "form-control" })
                 </div>
                 <div class="col">
-                    @Html.ActionLink("Change password", "updatePassword", new { id = Model.Id }, new { @class = "btn btn-warning", @style = "color:white" })
+                     @Html.ActionLink("Change password", "updatePassword", new { id = Model.Id }, new { @class = "btn btn-warning", @style = "color:white" })
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
             </div>
             <input type="submit" value="Submit" class="btn btn-primary" />
-            @Html.ActionLink("Back", "ShowAllTemplates", null, new { @class = "btn btn-info" })
+            @Html.ActionLink("Back To List", "ShowAllTemplates", null, new { @class = "btn btn-secondary ml-3" })
         </form>
     </div>
 }
