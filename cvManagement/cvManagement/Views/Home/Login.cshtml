@@ -32,7 +32,7 @@
     ViewBag.Title = "Login";
     Layout = "";
 }
-@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))   
 {
     @Html.AntiForgeryToken()
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh">
