@@ -9,19 +9,19 @@ namespace cvManagement.DataAccessLayer
 {
     public class EmailTemplateAccessLayer
     {
-        const int query1 = 1;
-        const int query2 = 2;
-        const int query4 = 4;
-        const int query3 = 3;
-        const int query5 = 5;
-        const int query6 = 6;
+        const int QUERY_INSERT = 1;
+        const int QUERY_UPDATE = 2;
+        const int QUERY_DELETE = 3;
+        const int QUERY_SELECTALL = 4;
+        const int QUERY_SELECTBYID = 5;
+        const int QUERY_SELECTBYNAME = 6;
 
         #region Selectalldata
         /// <summary>
         /// Lay toan bo email template
         /// </summary>
         /// <returns value="List<emailTemplate>" name="listEmailTemplate"></returns>
-        public List<emailTemplate> Selectalldata()
+        public List<EmailTemplate> Selectalldata()
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
             SqlCommand cmd = new SqlCommand("Usp_EmailTemplate", con)
@@ -31,7 +31,7 @@ namespace cvManagement.DataAccessLayer
             cmd.Parameters.AddWithValue("@id", null);
             cmd.Parameters.AddWithValue("@name", null);
             cmd.Parameters.AddWithValue("@content", null);
-            cmd.Parameters.AddWithValue("@Query", query4);
+            cmd.Parameters.AddWithValue("@Query", QUERY_SELECTALL);
             con.Open();
 
             SqlDataAdapter da = new SqlDataAdapter
@@ -40,11 +40,11 @@ namespace cvManagement.DataAccessLayer
             };
             DataSet ds = new DataSet();
             da.Fill(ds);
-            List<emailTemplate> listEmailTemplate = new List<emailTemplate>();
+            List<EmailTemplate> listEmailTemplate = new List<EmailTemplate>();
 
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                emailTemplate cobj = new emailTemplate
+                EmailTemplate cobj = new EmailTemplate
                 {
                     Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
                     Name = ds.Tables[0].Rows[i]["name"].ToString(),
@@ -63,7 +63,7 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="emailtemplate" value="emailTemplate"></param>
         /// <returns name="result" value="string"></returns>
-        public string Insertdata(emailTemplate emailtemplate)
+        public string Insertdata(EmailTemplate emailtemplate)
         {
             SqlConnection con = null;
             string result;
@@ -77,7 +77,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@id", null);
                 cmd.Parameters.AddWithValue("@name", emailtemplate.Name);
                 cmd.Parameters.AddWithValue("@content", emailtemplate.Content);
-                cmd.Parameters.AddWithValue("@Query", query1);
+                cmd.Parameters.AddWithValue("@Query", QUERY_INSERT);
                 con.Open();
                 result = cmd.ExecuteScalar().ToString();
 
@@ -101,7 +101,7 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="emailtemplate" value="emailTemplate"></param>
         /// <returns name="result" value="string"></returns>
-        public string Updatedata(emailTemplate emailtemplate)
+        public string Updatedata(EmailTemplate emailtemplate)
         {
             SqlConnection con = null;
             string result;
@@ -115,7 +115,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@id", emailtemplate.Id);
                 cmd.Parameters.AddWithValue("@name", emailtemplate.Name);
                 cmd.Parameters.AddWithValue("@content", emailtemplate.Content);
-                cmd.Parameters.AddWithValue("@Query", query2);
+                cmd.Parameters.AddWithValue("@Query", QUERY_UPDATE);
                 con.Open();
                 result = cmd.ExecuteScalar().ToString();
 
@@ -139,10 +139,10 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="EmailTemplateId" value="string"></param>
         /// <returns name="foundTemplate" value="emailTemplate"></returns>
-        public emailTemplate SelectDataById(string EmailTemplateId)
+        public EmailTemplate SelectDataById(string EmailTemplateId)
         {
             SqlConnection con = null;
-            emailTemplate foundTemplate = null;
+            EmailTemplate foundTemplate = null;
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
@@ -153,7 +153,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@id", EmailTemplateId);
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@content", null);
-                cmd.Parameters.AddWithValue("@Query", query5);
+                cmd.Parameters.AddWithValue("@Query", QUERY_SELECTBYID);
 
                 SqlDataAdapter da = new SqlDataAdapter
                 {
@@ -164,7 +164,7 @@ namespace cvManagement.DataAccessLayer
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    foundTemplate = new emailTemplate
+                    foundTemplate = new EmailTemplate
                     {
                         Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
                         Name = ds.Tables[0].Rows[i]["name"].ToString(),
@@ -192,10 +192,10 @@ namespace cvManagement.DataAccessLayer
         /// </summary>
         /// <param name="templateName" value="string"></param>
         /// <returns name="listFoundTemplate" value="List<emailTemplate>"></returns>
-        public List<emailTemplate> SearchDataByName(string templateName)
+        public List<EmailTemplate> SearchDataByName(string templateName)
         {
             SqlConnection con = null;
-            List<emailTemplate> listFoundTemplate = new List<emailTemplate>();
+            List<EmailTemplate> listFoundTemplate = new List<EmailTemplate>();
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
@@ -206,7 +206,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@id", null);
                 cmd.Parameters.AddWithValue("@name", templateName);
                 cmd.Parameters.AddWithValue("@content", null);
-                cmd.Parameters.AddWithValue("@Query", query6);
+                cmd.Parameters.AddWithValue("@Query", QUERY_SELECTBYNAME);
 
                 SqlDataAdapter da = new SqlDataAdapter
                 {
@@ -217,7 +217,7 @@ namespace cvManagement.DataAccessLayer
 
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    emailTemplate foundTemplate = new emailTemplate
+                    EmailTemplate foundTemplate = new EmailTemplate
                     {
                         Id = Convert.ToInt32(ds.Tables[0].Rows[i]["id"].ToString()),
                         Name = ds.Tables[0].Rows[i]["name"].ToString(),
@@ -260,7 +260,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@id", ID);
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@content", null);
-                cmd.Parameters.AddWithValue("@Query", query3);
+                cmd.Parameters.AddWithValue("@Query", QUERY_DELETE);
                 con.Open();
                 result = cmd.ExecuteNonQuery();
 

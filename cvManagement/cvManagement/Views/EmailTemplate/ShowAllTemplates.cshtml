@@ -1,4 +1,4 @@
-﻿@model cvManagement.Models.emailTemplate
+﻿@model cvManagement.Models.EmailTemplate
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -50,7 +50,6 @@
 @if (TempData["InsertResult"] != null)
 {
     <script type="text/javascript">
-
         alert("Record Is Inserted Successfully");
     </script>
 
@@ -58,7 +57,6 @@
 @if (TempData["UpdateResult"] != null)
 {
     <script type="text/javascript">
-
         alert("Record Is Updated Successfully");
     </script>
 
@@ -66,7 +64,6 @@
 @if (TempData["DeleteResult"] != null)
 {
     <script type="text/javascript">
-
         alert("Record Is Deleted Successfully");
     </script>
 }

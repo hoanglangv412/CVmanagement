@@ -18,7 +18,7 @@ namespace cvManagement.Controllers
         [HttpGet]
         public ActionResult ShowAllTemplates()
         {
-            emailTemplate objTemplate = new emailTemplate();
+            EmailTemplate objTemplate = new EmailTemplate();
             EmailTemplateAccessLayer emailTemplateLayer = new EmailTemplateAccessLayer();
             objTemplate.listTemplate = emailTemplateLayer.Selectalldata();
 
@@ -64,7 +64,7 @@ namespace cvManagement.Controllers
         /// <param name="emailtemplate"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult createTemplate(emailTemplate emailtemplate)
+        public ActionResult createTemplate(EmailTemplate emailtemplate)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace cvManagement.Controllers
         /// <param name="emailtemplate"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult editTemplate(emailTemplate emailtemplate)
+        public ActionResult editTemplate(EmailTemplate emailtemplate)
         {
             if (ModelState.IsValid)
             {

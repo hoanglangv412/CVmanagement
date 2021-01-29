@@ -9,11 +9,11 @@ namespace cvManagement.DataAccessLayer
 {
     public class AccountAccessLayer
     {
-        const int query1 = 1;
-        const int query2 = 2;
-        const int query4 = 4;
-        const int query3 = 3;
-        const int query5 = 5;
+        const int QUERY_INSERT = 1;
+        const int QUERY_UPDATE = 2;
+        const int QUERY_DELETE = 4;
+        const int QUERY_SELECTALL = 3;
+        const int QUERY_SELECTBYID = 5;
 
         #region Selectalldata
         /// <summary>
@@ -31,7 +31,7 @@ namespace cvManagement.DataAccessLayer
             cmd.Parameters.AddWithValue("@name", null);
             cmd.Parameters.AddWithValue("@password", null);
             cmd.Parameters.AddWithValue("@role", null);
-            cmd.Parameters.AddWithValue("@Query", query4);
+            cmd.Parameters.AddWithValue("@Query", QUERY_DELETE);
             con.Open();
 
             SqlDataAdapter da = new SqlDataAdapter
@@ -79,7 +79,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@name", account.Name);
                 cmd.Parameters.AddWithValue("@password", account.PassWord);
                 cmd.Parameters.AddWithValue("@role", account.Role);
-                cmd.Parameters.AddWithValue("@Query", query1);
+                cmd.Parameters.AddWithValue("@Query", QUERY_INSERT);
                 con.Open();
                 result = cmd.ExecuteScalar().ToString();
 
@@ -118,7 +118,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@name", account.Name);
                 cmd.Parameters.AddWithValue("@password", account.PassWord);
                 cmd.Parameters.AddWithValue("@role", account.Role);
-                cmd.Parameters.AddWithValue("@Query", query2);
+                cmd.Parameters.AddWithValue("@Query", QUERY_UPDATE);
                 con.Open();
                 result = cmd.ExecuteScalar().ToString();
 
@@ -157,7 +157,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@password", null);
                 cmd.Parameters.AddWithValue("@role", null);
-                cmd.Parameters.AddWithValue("@query", query5);
+                cmd.Parameters.AddWithValue("@query", QUERY_SELECTBYID);
 
                 SqlDataAdapter da = new SqlDataAdapter
                 {
@@ -212,7 +212,7 @@ namespace cvManagement.DataAccessLayer
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@password", null);
                 cmd.Parameters.AddWithValue("@role", null);
-                cmd.Parameters.AddWithValue("@Query", query3);
+                cmd.Parameters.AddWithValue("@Query", QUERY_SELECTALL);
                 con.Open();
                 result = cmd.ExecuteNonQuery();
 

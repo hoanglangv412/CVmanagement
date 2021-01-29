@@ -6,7 +6,7 @@ using System.Web;
 
 namespace cvManagement.Models
 {
-    public class emailTemplate
+    public class EmailTemplate
     {
         [Key]
         public int Id { get; set; }
@@ -17,11 +17,11 @@ namespace cvManagement.Models
 
         [Required(ErrorMessage = "Enter the content")]
         public string Content { get; set; }
-        public List<emailTemplate> listTemplate { get; set; }
+        public List<EmailTemplate> listTemplate { get; set; }
 
-        public emailTemplate() { }
+        public EmailTemplate() { }
 
-        public emailTemplate(int id, string name, string content, List<emailTemplate> listTemplate)
+        public EmailTemplate(int id, string name, string content, List<EmailTemplate> listTemplate)
         {
             Id = id;
             Name = name;
