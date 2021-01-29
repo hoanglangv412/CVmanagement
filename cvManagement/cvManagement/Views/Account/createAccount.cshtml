@@ -57,10 +57,8 @@
                     @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label" })
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
-                    @Html.DropDownListFor(model => model.Role, new List<SelectListItem> {
-                        new SelectListItem{ Text = "Human Resource",Value="0"},
-                        new SelectListItem{ Text = "Interviewer",Value="1"}
-                    }, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Role, new SelectList(new[] { "Human Resource", "Interviewer" }
+               , new { @class = "form-control" }))
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
 
         /*navbar*/
         nav {
-            height: 100px;
+            height: 50px;
         }
 
         .form-control-dark {
@@ -37,14 +37,13 @@
 
         /*logo*/
         img {
-            margin-left: 20px;
-            height: 50px;
+            height: 40px;
             width: 100px;
         }
 
         /*sidebar*/
-        li {
-            font-weight: bold;
+        li strong {
+            color: #333;
         }
 
         .sidebar {
@@ -56,22 +55,23 @@
 <body>
     <!--navbar-->
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 row">
-        <img src="~/Photos/logo.png" class="mr-4" />
+        <div class="container col-sm-3 col-md-2">
+            <img class="mx-auto" src="~/Photos/logo.png" />
+        </div>
         <!--search button-->
-        <input class="form-control form-control-dark border border-dark rounded-0"
+        <input class="form-control form-control-dark border border-dark rounded-0 ml-2"
                type="text"
                placeholder="Search"
-               style="height: 60px" />
+               style="height: 50px" />
         <!--sign out button-->
         <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap" style="color: white">
+            <li class="nav-item text-nowrap">
                 @{
                     if (Session["account"] != null)
                     {
                         <a href="@Url.Action("Logout", "Home")" class="nav-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="color: white; fill: currentColor"><path fill-rule="evenodd" d="M3 3.25c0-.966.784-1.75 1.75-1.75h5.5a.75.75 0 010 1.5h-5.5a.25.25 0 00-.25.25v17.5c0 .138.112.25.25.25h5.5a.75.75 0 010 1.5h-5.5A1.75 1.75 0 013 20.75V3.25zm16.006 9.5l-3.3 3.484a.75.75 0 001.088 1.032l4.5-4.75a.75.75 0 000-1.032l-4.5-4.75a.75.75 0 00-1.088 1.032l3.3 3.484H10.75a.75.75 0 000 1.5h8.256z"></path></svg>
                             <span>
-                                <strong>Sign out</strong>
+                                <strong style="color: white">Sign out</strong>
                             </span>
                         </a>
                     }
@@ -83,7 +83,7 @@
     <div class="container-fluid">
         <div class="row">
             <!--sidebar-->
-            <nav class="col-2 d-none d-md-block bg-light sidebar">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         @{

@@ -1,5 +1,6 @@
 ﻿using cvManagement.DataAccessLayer;
 using cvManagement.Models;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace cvManagement.Controllers
@@ -123,10 +124,10 @@ namespace cvManagement.Controllers
         /// <summary>
         /// hien thi man hinh them Account
         /// </summary>
-        /// <param name="id" value="string"></param>
+        /// <param></param>
         /// <returns>hien thi man hinh them account</returns>
         [HttpGet]
-        public ActionResult createAccount(string id)
+        public ActionResult createAccount()
         {
             return View();
         }
