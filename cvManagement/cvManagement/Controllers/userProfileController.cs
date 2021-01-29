@@ -1,6 +1,7 @@
 using cvManagement.DataAccessLayer;
 using cvManagement.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 namespace cvManagement.Controllers
@@ -28,7 +29,7 @@ namespace cvManagement.Controllers
         /// <param name="pro"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult InsertUserProfile(UserProfile pro,FormCollection form)
+        public ActionResult InsertUserProfile(UserProfile pro, FormCollection form)
         {
             if (ModelState.IsValid)
             {
@@ -39,12 +40,10 @@ namespace cvManagement.Controllers
 
                 return RedirectToAction("ListUserProfile");
             }
-
             else
             {
-                ModelState.AddModelError("", "Error in saving data");  
-
-                return View();
+                ModelState.AddModelError("", "Error in saving data");
+                return RedirectToAction("InsertUserProfile");
             }
         }
 
@@ -62,6 +61,7 @@ namespace cvManagement.Controllers
             userprofile = userprofilelayer.SelectDatabyID(id);
             userprofile.listPosition = positionLayer.Selectalldata();
             userprofile.listSource = sourceLayer.Selectalldata();
+
             return View(userprofile);
         }
 
@@ -82,12 +82,10 @@ namespace cvManagement.Controllers
 
                 return RedirectToAction("ListUserProfile");
             }
-
             else
             {
-                ModelState.AddModelError("", "Error in saving data");
-
-                return View(pro);
+                ModelState.AddModelError("", "Error in updating data");
+                return RedirectToAction("UpdateUserProfile");
             }
         }
 
@@ -102,28 +100,11 @@ namespace cvManagement.Controllers
             UserProfileLayer userProfileLayer = new UserProfileLayer();
             SourceLayer sourceLayer = new SourceLayer();
             PositionLayer positionLayer = new PositionLayer();
-
             userProfile.listPosition = positionLayer.Selectalldata();
             userProfile.listSource = sourceLayer.Selectalldata();
             userProfile.ListProfile = userProfileLayer.Selectalldata();
+
             return View(userProfile);
-        }
-
-        /// <summary>
-        /// Search Profile by Name
-        /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public ActionResult SearchProfileByName(string ID)
-        {
-            UserProfileLayer upl = new UserProfileLayer();
-            UserProfile pro = new UserProfile
-            {
-                ListProfile = upl.SearchProfileByName(ID)
-            };
-
-            return View(pro);
         }
     }
 }
