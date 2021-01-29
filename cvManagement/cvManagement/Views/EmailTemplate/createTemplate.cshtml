@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create Template</h2>
+<h2>Create Email</h2>
 
 @using (Html.BeginForm())
 {
@@ -30,7 +30,7 @@
         </div>
 
         <!--Buttons-->
-        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="submit" value="Submit" class="btn btn-success" />
         @Html.ActionLink("Back To List", "ShowAllTemplates", null, new { @class = "btn btn-secondary ml-3" })
     </div>
 }

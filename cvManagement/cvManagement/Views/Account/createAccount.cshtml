@@ -4,6 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!--Tao list Role-->
+@functions{
+    public static readonly List<SelectListItem> LIST_ROLE = new List<SelectListItem>() {
+                        new SelectListItem { Text = "Human Resource", Value = "0"},
+                        new SelectListItem { Text = "Interviewer", Value = "1"},
+                        };
+}
+
 <h2>Create account</h2>
 
 @using (Html.BeginForm())
@@ -58,7 +66,7 @@
                 </div>
                 <div class="col-md-8 col-lg-8 col-xl-8">
 
-                    @Html.DropDownListFor(model => model.Role, List_Role, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Role, LIST_ROLE, new { @class = "form-control" })
                 </div>
             </div>
         </div>
