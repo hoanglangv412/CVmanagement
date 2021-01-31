@@ -17,10 +17,6 @@
     };
 }
 <style>
-    label {
-        margin-top: 15px;
-    }
-
     .container {
         max-width: 960px;
     }
@@ -48,7 +44,10 @@
     })()
 
 </script>
-<h4 class="mb-3">Update profile</h4>
+<div class="col-12 d-flex justify-content-between" style="padding:0px">
+    <h2>Update profile</h2>
+    @Html.ActionLink("Back To List", "ListUserProfile", null, new { @class = "btn btn-secondary w-10 btn btn-primary btn-lg" })
+</div>
 <hr class="my-4">
 @using (Html.BeginForm("UpdateUserProfile", "UserProfile", null, FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
 {
@@ -80,7 +79,10 @@
     <div class="invalid-feedback">
         Please enter the note.
     </div>
+    <!--Buttons-->
     <hr class="my-4">
-    <input type="submit" value="Submit" class="w-100 btn btn-primary btn-lg" />
+    <div class="col-12" style="padding:0px">
+        <input type="submit" value="Submit" class="w-10 btn btn-primary btn-lg" />
+    </div>
 }
 

@@ -32,7 +32,7 @@
 </style>
 <div class="container-xxl d-flex justify-content-between" style="margin-bottom:10px;">
     <h4>List profiles</h4>
-    @Html.ActionLink("Create", "InsertUserProfile", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create", "InsertUserProfile", null, new { @class = "w-10 btn btn-primary btn-lg" })
 </div>
 <table class="table" id="datatable">
     <thead>
@@ -123,7 +123,7 @@
                     @Html.TextBoxFor(modelItem => item.Note, new { @class = "form-control" })
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "UpdateUserProfile", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Edit", "UpdateUserProfile", new { id = item.Id }, new { @class = "w-10 btn btn-warning btn-lg" })
                 </td>
             </tr>
         }

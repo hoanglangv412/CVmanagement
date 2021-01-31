@@ -15,7 +15,7 @@ namespace cvManagement.DataAccessLayer
         const int QUERY_SELECTALL = 3;
         const int QUERY_SELECTBYID = 4;
         /// <summary>
-        /// Insert data
+        /// Insert profile
         /// </summary>
         /// <param name="pro"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace cvManagement.DataAccessLayer
         }
 
         /// <summary>
-        /// Update database
+        /// Update profile
         /// </summary>
         /// <param name="pro"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace cvManagement.DataAccessLayer
         }
 
         /// <summary>
-        /// Select all data
+        /// Select all profiles
         /// </summary>
         /// <returns></returns>
         public List<UserProfile> Selectalldata()
@@ -181,7 +181,7 @@ namespace cvManagement.DataAccessLayer
         }
 
         /// <summary>
-        /// Select data by Id
+        /// Select profile by Id
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>

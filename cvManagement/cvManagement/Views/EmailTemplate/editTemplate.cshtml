@@ -4,7 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Update template</h2>
+<div class="col-12 d-flex justify-content-between" style="padding:0px">
+    <h2>Update template</h2>
+    @Html.ActionLink("Back To List", "ShowAllTemplates", null, new { @class = "btn btn-secondary w-10 btn btn-primary btn-lg" })
+</div>
 
 @using (Html.BeginForm())
 {
@@ -29,7 +32,9 @@
         </div>
 
         <!--Buttons-->
-        <input type="submit" value="Submit" class="btn btn-primary" />
-        @Html.ActionLink("Back To List", "ShowAllTemplates", null, new { @class = "btn btn-secondary ml-3" })
+        <hr class="my-4">
+        <div class="col-12" style="padding:0px">
+            <input type="submit" value="Submit" class="w-10 btn btn-primary btn-lg" />
+        </div>
     </div>
 }
