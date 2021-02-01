@@ -2,9 +2,10 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Email Templates</h2>
-
+<div class="container-xxl d-flex justify-content-between" style="margin-bottom:10px;">
+    <h4>Email Templates</h4>
+    @Html.ActionLink("Create", "CreateTemplate", "", new { @class = "w-10 btn btn-primary btn-lg" })
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -38,21 +39,16 @@
             <td>
                 <div class="row">
                     <div class="col-6">
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure to delete this template?');" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "w-10 btn btn-danger btn-lg", onclick = "return confirm('Are you sure to delete this template?');" })
                     </div>
                     <div class="col-6">
-                        @Html.ActionLink("Edit", "EditTemplate", new { id = item.Id }, new { @class = "btn btn-warning ml-3", @style = "color: white" })
+                        @Html.ActionLink("Edit", "EditTemplate", new { id = item.Id }, new { @class = "w-10 btn btn-warning btn-lg", @style = "color: white" })
                     </div>
                 </div>
             </td>
         </tr>
     }
 </table>
-
-<p>
-    @Html.ActionLink("Create", "CreateTemplate", "", new { @class = "btn btn-primary" })
-</p>
-
 <!--Script thong bao-->
 @if (TempData["InsertResult"] != null)
 {
