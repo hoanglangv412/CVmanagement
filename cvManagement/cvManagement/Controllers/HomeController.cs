@@ -1,9 +1,7 @@
 ﻿using cvManagement.DataAccessLayer;
 using cvManagement.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace cvManagement.Controllers
@@ -11,6 +9,7 @@ namespace cvManagement.Controllers
     public class HomeController : Controller
     {
         #region Login
+
         /// <summary>
         /// hien thi man hinh dang nhap
         /// </summary>
@@ -20,9 +19,11 @@ namespace cvManagement.Controllers
         {
             return View();
         }
+
         #endregion Login
 
         #region Login
+
         /// <summary>
         /// chuc nang dang nhap
         /// </summary>
@@ -51,9 +52,11 @@ namespace cvManagement.Controllers
             }
             return View(objAccount);
         }
+
         #endregion Login
 
         #region Logout
+
         /// <summary>
         /// chuc nang dang xuat
         /// </summary>
@@ -64,6 +67,7 @@ namespace cvManagement.Controllers
             Session.Abandon();
             return RedirectToAction("Login");
         }
+
         #endregion Logout
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace cvManagement.Models
 {
@@ -22,7 +19,10 @@ namespace cvManagement.Models
         public List<Account> listAccount;
 
         public Account account;
-        public Account() { }
+
+        public Account()
+        {
+        }
 
         public Account(int id, string name, string password, int role)
         {

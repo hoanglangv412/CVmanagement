@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace cvManagement.Models
 {
@@ -10,9 +6,12 @@ namespace cvManagement.Models
     {
         [Key]
         public int Id { get; set; }
+
         public string Name { get; set; }
 
-        public Position() { }
+        public Position()
+        {
+        }
 
         public Position(int id, string name)
         {

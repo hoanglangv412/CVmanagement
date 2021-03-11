@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+
 namespace cvManagement.DataAccessLayer
 {
     public class UserProfileLayer
     {
-        const int QUERY_INSERT = 1;
-        const int QUERY_UPDATE = 2;
-        const int QUERY_SELECTALL = 3;
-        const int QUERY_SELECTBYID = 4;
+        private const int QUERY_INSERT = 1;
+        private const int QUERY_UPDATE = 2;
+        private const int QUERY_SELECTALL = 3;
+        private const int QUERY_SELECTBYID = 4;
+
         /// <summary>
         /// Insert profile
         /// </summary>
@@ -47,7 +47,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return result = null;
             }
             finally
@@ -70,7 +69,7 @@ namespace cvManagement.DataAccessLayer
                 conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CVMANAGEMENT"].ToString());
                 SqlCommand cmd = new SqlCommand("Usp_UserProfile", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id",pro.Id);
+                cmd.Parameters.AddWithValue("@id", pro.Id);
                 cmd.Parameters.AddWithValue("@name", null);
                 cmd.Parameters.AddWithValue("@positionId", null);
                 cmd.Parameters.AddWithValue("@sourceId", null);
@@ -168,12 +167,10 @@ namespace cvManagement.DataAccessLayer
 
                 return ListProfile;
             }
-
             catch
             {
                 return ListProfile;
             }
-
             finally
             {
                 con.Close();
@@ -236,12 +233,10 @@ namespace cvManagement.DataAccessLayer
 
                 return pro;
             }
-
             catch
             {
                 return pro;
             }
-
             finally
             {
                 con.Close();

@@ -9,14 +9,15 @@ namespace cvManagement.DataAccessLayer
 {
     public class EmailTemplateAccessLayer
     {
-        const int QUERY_INSERT = 1;
-        const int QUERY_UPDATE = 2;
-        const int QUERY_DELETE = 3;
-        const int QUERY_SELECTALL = 4;
-        const int QUERY_SELECTBYID = 5;
-        const int QUERY_SELECTBYNAME = 6;
+        private const int QUERY_INSERT = 1;
+        private const int QUERY_UPDATE = 2;
+        private const int QUERY_DELETE = 3;
+        private const int QUERY_SELECTALL = 4;
+        private const int QUERY_SELECTBYID = 5;
+        private const int QUERY_SELECTBYNAME = 6;
 
         #region Selectalldata
+
         /// <summary>
         /// Lay toan bo email template
         /// </summary>
@@ -55,9 +56,11 @@ namespace cvManagement.DataAccessLayer
 
             return listEmailTemplate;
         }
+
         #endregion Selectalldata
 
         #region InsertData
+
         /// <summary>
         /// Them vao 1 email template
         /// </summary>
@@ -85,7 +88,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return result = null;
             }
             finally
@@ -93,9 +95,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion InsertData
 
         #region Updatedata
+
         /// <summary>
         /// Cap nhat du lieu 1 email template
         /// </summary>
@@ -123,7 +127,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return result = null;
             }
             finally
@@ -131,9 +134,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion Updatedata
 
         #region SelectDataById
+
         /// <summary>
         /// Lay ra 1 email template theo id
         /// </summary>
@@ -176,7 +181,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return foundTemplate;
             }
             finally
@@ -184,9 +188,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion SelectDataById
 
         #region SearchDataByName
+
         /// <summary>
         /// Tim template theo ten
         /// </summary>
@@ -230,7 +236,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return listFoundTemplate = null;
             }
             finally
@@ -238,9 +243,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion SearchDataByName
 
         #region DeleteData
+
         /// <summary>
         /// Xoa 1 template
         /// </summary>
@@ -275,6 +282,7 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion DeleteData
     }
 }

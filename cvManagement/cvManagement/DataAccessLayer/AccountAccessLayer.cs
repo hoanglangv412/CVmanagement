@@ -9,13 +9,14 @@ namespace cvManagement.DataAccessLayer
 {
     public class AccountAccessLayer
     {
-        const int QUERY_INSERT = 1;
-        const int QUERY_UPDATE = 2;
-        const int QUERY_DELETE = 4;
-        const int QUERY_SELECTALL = 3;
-        const int QUERY_SELECTBYID = 5;
+        private const int QUERY_INSERT = 1;
+        private const int QUERY_UPDATE = 2;
+        private const int QUERY_DELETE = 4;
+        private const int QUERY_SELECTALL = 3;
+        private const int QUERY_SELECTBYID = 5;
 
         #region Selectalldata
+
         /// <summary>
         /// Lay toan bo account
         /// </summary>
@@ -56,9 +57,11 @@ namespace cvManagement.DataAccessLayer
 
             return listAccount;
         }
+
         #endregion Selectalldata
 
         #region InsertData
+
         /// <summary>
         /// Them vao 1 account
         /// </summary>
@@ -87,7 +90,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return result = null;
             }
             finally
@@ -95,9 +97,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion InsertData
 
         #region Updatedata
+
         /// <summary>
         /// Cap nhat du lieu 1 account
         /// </summary>
@@ -126,7 +130,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return result = null;
             }
             finally
@@ -134,9 +137,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion Updatedata
 
         #region SelectDataById
+
         /// <summary>
         /// Lay ra 1 account theo id
         /// </summary>
@@ -181,7 +186,6 @@ namespace cvManagement.DataAccessLayer
             }
             catch (Exception)
             {
-
                 return foundAccount;
             }
             finally
@@ -189,9 +193,11 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion SelectDataById
 
         #region DeleteData
+
         /// <summary>
         /// Xoa 1 account
         /// </summary>
@@ -227,6 +233,7 @@ namespace cvManagement.DataAccessLayer
                 con.Close();
             }
         }
+
         #endregion DeleteData
     }
 }

@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace cvManagement.DataAccessLayer
 {
     public class PositionLayer
     {
-        const int QUERY_SELECTALL = 1;
+        private const int QUERY_SELECTALL = 1;
 
         #region Selectalldata
+
         /// <summary>
         /// Lay toan bo account
         /// </summary>
@@ -49,6 +48,7 @@ namespace cvManagement.DataAccessLayer
 
             return listPositon;
         }
+
         #endregion Selectalldata
     }
 }

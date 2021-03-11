@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\cvManagement"
+    "\\cvManagement",
+    "\\cvManagement\\cvManagement",
+    "\\cvManagement\\cvManagement\\Views",
+    "\\cvManagement\\cvManagement\\Views\\Home"
   ],
   "SelectedNode": "\\cvManagement\\cvManagement.sln",
   "PreviewInSolutionExplorer": false

@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace cvManagement.DataAccessLayer
 {
     public class SourceLayer
     {
         #region Selectalldata
+
         /// <summary>
         /// Lay toan bo account
         /// </summary>
@@ -44,6 +43,7 @@ namespace cvManagement.DataAccessLayer
 
             return listSource;
         }
+
         #endregion Selectalldata
     }
 }

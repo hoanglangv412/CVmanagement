@@ -1,6 +1,5 @@
 ﻿using cvManagement.DataAccessLayer;
 using cvManagement.Models;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace cvManagement.Controllers
@@ -8,6 +7,7 @@ namespace cvManagement.Controllers
     public class AccountController : Controller
     {
         #region ShowAllAccounts
+
         /// <summary>
         /// Hien thi toan bo account
         /// </summary>
@@ -22,9 +22,11 @@ namespace cvManagement.Controllers
 
             return View(account);
         }
+
         #endregion ShowAllAccounts
 
         #region Delete
+
         /// <summary>
         /// Chuc nang xoa account
         /// </summary>
@@ -40,9 +42,11 @@ namespace cvManagement.Controllers
 
             return RedirectToAction("ShowAllAccounts");
         }
+
         #endregion Delete
 
         #region updatePassword
+
         /// <summary>
         /// chuyen sang man hinh update mat khau
         /// </summary>
@@ -55,9 +59,11 @@ namespace cvManagement.Controllers
 
             return View(accountAccessLayer.SelectDataById(id));
         }
+
         #endregion updatePassword
 
         #region updatePassword
+
         /// <summary>
         /// cap nhat mat khau
         /// </summary>
@@ -118,9 +124,11 @@ namespace cvManagement.Controllers
                 return View();
             }
         }
+
         #endregion updatePassword
 
         #region createAccount
+
         /// <summary>
         /// hien thi man hinh them Account
         /// </summary>
@@ -131,9 +139,11 @@ namespace cvManagement.Controllers
         {
             return View();
         }
+
         #endregion createAccount
 
         #region createAccount
+
         /// <summary>
         /// chuc nang them account
         /// </summary>
@@ -180,9 +190,11 @@ namespace cvManagement.Controllers
                 return View();
             }
         }
+
         #endregion createAccount
 
         #region editAccount
+
         /// <summary>
         /// hien thi man hinh sua Account
         /// </summary>
@@ -195,9 +207,11 @@ namespace cvManagement.Controllers
 
             return View(accountAccessLayer.SelectDataById(id));
         }
+
         #endregion editAccount
 
         #region editAccount
+
         /// <summary>
         /// Chuc nang sua account
         /// </summary>
@@ -250,6 +264,7 @@ namespace cvManagement.Controllers
                 return View(account);
             }
         }
+
         #endregion editAccount
     }
 }

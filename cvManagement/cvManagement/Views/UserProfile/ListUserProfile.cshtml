@@ -96,7 +96,7 @@
                     @Html.TextBoxFor(modelItem => item.ApplyDate, "{0:MM/dd/yyyy}", new { @class = "form-control" })
                 </td>
                 <td>
-                    <input type="button" value="@SelectNameById(item.CvResult,LISTRESULT).Split('/')[0]" class="@SelectNameById(item.CvResult,LISTRESULT).Split('/')[1]"/>
+                    <input type="button" value="@SelectNameById(item.CvResult,LISTRESULT).Split('/')[0]" class="@SelectNameById(item.CvResult,LISTRESULT).Split('/')[1]" />
                 </td>
                 <td>
                     @{
@@ -147,4 +147,3 @@
         alert("Record Is Deleted Successfully");
     </script>
 }
-

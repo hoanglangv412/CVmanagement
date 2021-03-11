@@ -1,9 +1,5 @@
 ﻿using cvManagement.DataAccessLayer;
 using cvManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace cvManagement.Controllers
@@ -11,6 +7,7 @@ namespace cvManagement.Controllers
     public class EmailTemplateController : Controller
     {
         #region ShowAllTemplates
+
         /// <summary>
         /// Hien thi toan bo Template
         /// </summary>
@@ -24,9 +21,11 @@ namespace cvManagement.Controllers
 
             return View(objTemplate);
         }
+
         #endregion ShowAllTemplates
 
         #region Delete
+
         /// <summary>
         /// Chuc nang xoa template
         /// </summary>
@@ -42,9 +41,11 @@ namespace cvManagement.Controllers
 
             return RedirectToAction("ShowAllTemplates");
         }
+
         #endregion Delete
 
         #region createTemplate
+
         /// <summary>
         /// hien thi man sua template
         /// </summary>
@@ -55,9 +56,11 @@ namespace cvManagement.Controllers
         {
             return View();
         }
+
         #endregion createTemplate
 
         #region createTemplate
+
         /// <summary>
         /// tao moi template
         /// </summary>
@@ -86,6 +89,7 @@ namespace cvManagement.Controllers
         #endregion createTemplate
 
         #region editTemplate
+
         /// <summary>
         /// hien thi man sua template
         /// </summary>
@@ -98,9 +102,11 @@ namespace cvManagement.Controllers
 
             return View(emailTemplateLayer.SelectDataById(id));
         }
+
         #endregion editTemplate
 
         #region editTemplate
+
         /// <summary>
         /// sua template
         /// </summary>
@@ -125,6 +131,7 @@ namespace cvManagement.Controllers
                 return View();
             }
         }
+
         #endregion editTemplate
     }
 }

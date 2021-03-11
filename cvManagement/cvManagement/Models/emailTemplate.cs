@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace cvManagement.Models
 {
@@ -17,9 +14,12 @@ namespace cvManagement.Models
 
         [Required(ErrorMessage = "Enter the content")]
         public string Content { get; set; }
+
         public List<EmailTemplate> listTemplate { get; set; }
 
-        public EmailTemplate() { }
+        public EmailTemplate()
+        {
+        }
 
         public EmailTemplate(int id, string name, string content, List<EmailTemplate> listTemplate)
         {
